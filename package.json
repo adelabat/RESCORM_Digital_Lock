@@ -1,0 +1,85 @@
+{
+  "name": "TFG",
+  "version": "0.0.2",
+  "description": "Digital locks for EXCAPE ROOMS",
+  "author": "Andrés Delabat Parrilla <a.delabat@alumnos.upm.es>",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "clean": "rimraf dist rimraf dist_scorm",
+    "production": "rimraf dist && cross-env NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --colors && cross-env npm run copy_assets",
+    "copy_assets": "cross-env mkdir -p dist/assets && cross-env cp -r app/assets dist/ && cross-env rm -rf dist/assets/scss",
+    "scorm_package": "rimraf dist_scorm && cross-env npm run production && cross-env node tasks/scorm_package.js",
+    "lint": "eslint --fix --ext .js,.jsx,.es6 app/main.js app/components app/config/ app/vendors/I18n.js app/vendors/Utils.js app/constants app/reducers tasks tests",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage",
+    "precommit": "cross-env npm run lint && npm test",
+    "prepush": "cross-env npm run lint && npm test"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/shim.js"
+    ],
+    "mapCoverage": true,
+    "collectCoverageFrom": [
+      "app/**/*.{js,jsx,ts,tsx}"
+    ],
+    "moduleNameMapper": {
+      "\\.(ejs)$": "<rootDir>/shim.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/shim.js",
+      "\\.(css|scss|less)$": "<rootDir>/shim.js"
+    },
+    "testMatch": [
+      "**/?(*.)(spec|test).js?(x)"
+    ]
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "cross-env": "5.1.0",
+    "fs-extra": "^5.0.0",
+    "react": "16.10.2",
+    "react-dom": "^16.10.2",
+    "react-frame-component": "^4.1.1",
+    "react-iframe": "^1.8.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "zip-folder": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "7.2.3",
+    "babel-loader": "8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "copy-webpack-plugin": "5.0.4",
+    "css-loader": "0.28.7",
+    "enzyme": "3.1.0",
+    "enzyme-adapter-react-16": "1.0.1",
+    "eslint": "6.6.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-react": "^7.16.0",
+    "file-loader": "4.2.0",
+    "html-webpack-plugin": "3.2.0",
+    "husky": "0.15.0-beta.2",
+    "jest": "21.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "4.13.0",
+    "open-browser-webpack-plugin": "0.0.5",
+    "react-hot-loader": "^4.12.15",
+    "react-test-renderer": "16.0.0",
+    "@hot-loader/react-dom": "^16.8.6",
+    "rimraf": "2.6.2",
+    "sass-loader": "8.0.0",
+    "style-loader": "0.19.0",
+    "url-loader": "0.6.1",
+    "webpack": "4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "3.9.0"
+  }
+}

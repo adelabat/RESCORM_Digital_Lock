@@ -1,0 +1,107 @@
+.App {
+ margin: 0;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222;
+  text-align: left;
+  background-color: #222;
+}
+
+.App-logo {
+  height: 40vmin;
+
+}
+.App-link {
+  color: #222;
+}
+
+
+
+.Content{
+
+  margin: 0;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222;
+  text-align: left;
+  background-color: #222;
+
+} 
+
+
+
+
+.image{
+  text-align: center;
+  border: 0px ;
+  align-items: center;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+
+
+
+.overlayone-radius{ /* Propiedades de imagen */
+text-align: center;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px;
+padding: 0px;
+width: 200px;
+height: 150px;
+display: inline-block;
+position: relative;
+margin-right: 50px;
+}
+
+.overlayinn-radius{ /* Propiedades de la transparencia */
+background-color: rgba(0, 0, 0, 0);
+width: 80px; /* ancho del contenedor de texto */
+height: 80px; /* alto del contenedor de texto */
+border-radius: 20px; /* Tamaño del circulo */
+opacity: 0; /* esta condicion mantiene el texto oculto */
+top: 40px; /*distancia hacia abajo*/
+left: 65px; /*distancia hacia la derecha*/
+position: absolute;
+padding: 20px; /* espacio entre texto y bordes */
+transition: opacity .5s;
+text-align: center; /* texto centrado */
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px; /* tamaño de letra */
+color:#222; /* color de texto */
+}
+
+.table{
+  text-align: center;
+
+  align-items: center;
+
+
+}
+
+.overlayinn-radius:hover { /* Efecto al pasar el mouse */
+opacity: 1;
+transition: opacity .5s;
+}
+
+
+
+
+button{
+  border: 1px solid #222; /*anchura, estilo y color borde*/
+  padding: 10px; /*espacio alrededor texto*/
+  color: #00bc8c;
+  background-color: #222;
+  text-decoration: none; /*decoración texto*/
+  text-transform: uppercase; /*capitalización texto*/
+  font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+  border-radius: 50px; /*bordes redondos*/
+  display: inline; /* dis`lay y margin ponen la cosa centrada*/
+  margin: auto;
+}
