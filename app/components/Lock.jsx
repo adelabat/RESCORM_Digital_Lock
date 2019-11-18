@@ -3,10 +3,11 @@ import './../assets/scss/quiz.scss';
 
 
 import * as Utils from '../vendors/Utils.js';
-import {addObjectives, resetObjectives, finishApp, } from './../reducers/actions';
+import {addObjectives,  finishApp, } from './../reducers/actions';
 
 import QuizHeader from './QuizHeader.jsx';
-import MCQuestion from './MCQuestion.jsx';
+import MCAnswer from './MCAnswer.jsx';
+import LockButtons from './LockButtons.jsx';
     
 
 export default class Lock extends React.Component {
@@ -14,6 +15,15 @@ export default class Lock extends React.Component {
     super(props);
     let quiz = this.props.quiz;
     let questions = quiz.questions;
+
+    quiz.questions = questions;
+
+    this.state = {
+      quiz:quiz,
+      current_question_index:1,
+
+    };
+
 
     // Adaptive behaviour
     // Sort questions based on difficulty
@@ -39,17 +49,11 @@ export default class Lock extends React.Component {
       questions = Utils.shuffleArray(questions);
     }
 
-    
 
 
-    quiz.questions = questions;
-
-    this.state = {
-      quiz:quiz,
-      current_question_index:1,
-
-    };
   }
+
+
 
   componentDidMount(){
     // Create objectives (One per question included in the quiz)
@@ -71,20 +75,35 @@ export default class Lock extends React.Component {
       this.props.dispatch(finishApp(true));
     }
   }
-  onResetQuiz(){
-    this.setState({current_question_index:1});
-    this.props.dispatch(resetObjectives());
-  }
+
+  
   render(){
     let currentQuestion = this.state.quiz.questions[this.state.current_question_index - 1];
-    let isLastQuestion = (this.state.current_question_index === this.state.quiz.questions.length);
 
-   
+    let isLastQuestion = (this.state.current_question_index === this.state.quiz.questions.length);
 
     let objective = this.props.tracking.objectives["Question" + (this.state.current_question_index)];
     let onNextQuestion = this.onNextQuestion.bind(this);
-    let onResetQuiz = this.onResetQuiz.bind(this);
-    
+
+
+    let respuesta = this.props.I18n.getTrans("i.answer");
+    let choices = [];
+    for(let i = 0; i < respuesta.length; i++){
+      choices.push(
+      <MCAnswer      
+                     respuestai = {respuesta.charAt(i)} 
+                     question={currentQuestion} 
+                     dispatch={this.props.dispatch} 
+                     I18n={this.props.I18n} 
+                     objective={objective} 
+                     onNextQuestion={onNextQuestion} 
+                     isLastQuestion={isLastQuestion} 
+                     quizCompleted={this.props.tracking.finished}     />);
+    }
+
+    let choice=choices.map((el)=>{
+    return(<td key={el.toString()}>{el}</td>);
+    });
 
     return (
       <div className="quiz">
@@ -92,23 +111,25 @@ export default class Lock extends React.Component {
                     quiz={this.state.quiz} 
                     currentQuestionIndex={this.state.current_question_index}/>
 
-        <MCQuestion question={currentQuestion} 
-                                         dispatch={this.props.dispatch} 
-                                         I18n={this.props.I18n} 
-                                         objective={objective} 
-                                         onNextQuestion={onNextQuestion} 
+         <table className="table"> 
+            <tr>
+                  {choice}
+            </tr>
 
-                                         nResetQuiz={onResetQuiz} 
-                                         isLastQuestion={isLastQuestion} 
-                                         quizCompleted={this.props.tracking.finished}/>
+            
+          </table>    
 
 
 
+                  
 
-                                  
+        <LockButtons I18n={this.props.I18n} 
+                     quiz={this.state.quiz} 
+                     currentQuestionIndex={this.state.current_question_index}
+
+                     onNextQuestion={this.onNextQuestion.bind(this)} quizCompleted={this.props.quizCompleted} />
 
 
-                                     
       </div>
     );
   }

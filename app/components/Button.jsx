@@ -3,7 +3,7 @@ export default class Button extends React.Component {
 	
 	render() {
 		return(
-			<button
+			<button className="button_arrow"
 			onClick={this.props.buttonFunc}>
 			{this.props.buttonName}</button>
 			);

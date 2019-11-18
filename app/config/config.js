@@ -11,7 +11,7 @@ export let GLOBAL_CONFIG = {
       completion_threshold:0.5,
       score_threshold:0.6,
     },
-    n:3,
+    n:1,
   },
   production:{
     debug:false,

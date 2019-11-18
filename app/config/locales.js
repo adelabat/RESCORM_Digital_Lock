@@ -1,6 +1,6 @@
 export let LOCALES = {
   en:{
-    "i.answer":"Answer",
+    "i.answer":"abcd",
     "i.difficulty":"Difficulty",
     "i.finish_quiz":"Finish quiz",
     "i.finish_screen_title_full":"The content has ended. You may close this window. Your final progress was #{progress_measure}% and your final score was #{score}%.",
@@ -8,8 +8,10 @@ export let LOCALES = {
     "i.finish_screen_title_ws":"The content has ended. You may close this window. Your final score was #{score}%.",
     "i.finish_screen_title_simple":"The content has ended. You may close this window.",
     "i.quiz_header_title":"Lock: #{current}/#{total}",
+    "i.quiz_header_title2":"Try the correct combination",
     "i.logged_as":"Logged as",
     "i.next":"Next",
+    "i.submit":"Submit",
     "i.progress_measure":"Progress Measure",
     "i.reset_question":"Reset question",
     "i.reset_quiz":"Reset",

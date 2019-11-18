@@ -67,3 +67,12 @@ export function finishApp(finished = true){
   };
 }
 
+export function timer (time) {
+  return { 
+    type: 'TIMER', 
+    time: time,
+  };
+}
+
+
+

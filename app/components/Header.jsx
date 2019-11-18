@@ -1,9 +1,12 @@
 import React from 'react';
 
+
 export default class Header extends React.Component {
   constructor(props){
     super(props);
+
   }
+ 
   render(){
     let loggedText;
     let trackingTexts = [];
@@ -45,6 +48,12 @@ export default class Header extends React.Component {
         <h1>{this.props.I18n.getTrans("i.title")}</h1>
         <p id="tracking">{trackingEls}</p>
         {loggedEl}
+        <div class="progress">
+          <div class="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100%">
+          </div>
+        </div>
+        <h4>Time:</h4>
+          <h4>{this.props.time} segundos.</h4>
       </div>
     );
   }
