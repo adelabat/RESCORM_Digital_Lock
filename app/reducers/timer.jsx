@@ -1,4 +1,4 @@
-function timer(state = 300, action = {}) {
+function timer(state = 500, action = {}) {
 	switch (action.type) {
 
 		case 'FINISH_APP':

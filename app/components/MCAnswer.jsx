@@ -2,7 +2,7 @@ import React from 'react';
 import './../assets/scss/main.scss';
 import {objectiveAccomplished} from './../reducers/actions';
 import Button from "./Button";
-import Spinner from 'react-bootstrap/Spinner'
+
 
 
 
@@ -14,7 +14,8 @@ export default class MCQuestion extends React.Component {
     this.state = {
       selected_choices_ids:[],
       answered:false,
-      current_choice_index:0,
+      index: this.props.index,
+      current_choice_index: this.props.current_choice_index[this.props.i],
     };
 
   }
@@ -67,25 +68,10 @@ export default class MCQuestion extends React.Component {
     this.props.onNextQuestion();
   }
 
-
-  onNextPicture(){
-    let isLastPicture = (this.state.current_choice_index === this.props.question.choices.length);
-    if(isLastPicture === 0){
-    this.setState({current_choice_index:(this.state.current_choice_index + 1)});   
-    }
-  }
-
-   onPreviousPicture(){
-    let isFirstPicture = (this.state.current_choice_index === 0);
-    if(isFirstPicture === 0){
-    this.setState({current_choice_index:(this.state.current_choice_index + 1)});   
-    }
-  }
-
   render(){
-    let currentChoice = this.state.current_choice_index;
+    let currentChoice = this.props.current_choice_index[this.props.i];
     let button;
-    if(this.state.answered===true){
+    if(this.props.answered===true){
       button = <img src="./../assets/images/lock2.png" width="80px" height="100px" />
     } else{
 
@@ -104,10 +90,8 @@ export default class MCQuestion extends React.Component {
                <Button buttonName=<div class="arrow1"></div>
                
                buttonFunc={ () => {
-               if (this.state.current_choice_index!==0){
-                  return this.setState({ 
-               current_choice_index:(
-               this.state.current_choice_index - 1 )});
+               if (currentChoice!==0){
+                  return this.props.onChangeSymbol(this.props.i, currentChoice - 1 );
                 }else{
                   return;
                 }
@@ -116,45 +100,19 @@ export default class MCQuestion extends React.Component {
                 <Button buttonName=<div class="arrow2"></div>
 
                 buttonFunc={ () => {
-                if (this.state.current_choice_index!==this.props.question.choices.length - 1){
-                  return this.setState({ 
-                  current_choice_index:(
-                  this.state.current_choice_index + 1 )});
+                if (currentChoice!==this.props.question.choices.length - 1){
+                   return this.props.onChangeSymbol(this.props.i, currentChoice + 1 );
+                
                   }else{
                     return;
                   }
                 }}/>
 
-
               </td>
-           
-             
-            
-            </tr>
-            <tr>
-              <td align="center">
-              <button class="button_lock"
-                onClick={ () => {
-                if (this.props.question.choices[this.state.current_choice_index].id===this.props.respuestai){
-                  return this.setState({answered:true});
 
-                  }else{
-                    return this.setState({answered:false});
-                  }
-                
-                }}>
-                <Spinner animation="border" role="success"/>
-                <img src="./../assets/images/lock.png" width="80px" height="100px" />
-                <p/>Try!!
-                </button>
-
-                 
-              </td>
-             
             </tr>
 
-            
-          </table>    
+                    </table>    
         
 
 

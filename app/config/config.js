@@ -7,11 +7,12 @@ export let GLOBAL_CONFIG = {
     // locale: "es",
     adaptive:true,
     finish_screen:true,
+    answer:"abcd",
     scorm:{
       completion_threshold:0.5,
       score_threshold:0.6,
     },
-    n:1,
+    n:undefined,
   },
   production:{
     debug:false,
@@ -20,6 +21,7 @@ export let GLOBAL_CONFIG = {
     available_locales:["en", "es"],
     adaptive:true,
     finish_screen:true,
+    answer:"abcd",
     scorm:{
       completion_threshold:0.5,
       score_threshold:0.6,

@@ -16,8 +16,12 @@ export class App extends React.Component {
   constructor(props){
     super(props);
     I18n.init();
-  }
-
+   
+   //Candado Resuelto 
+   this.state = {
+      answered:false,
+    };
+  }  
   componentDidMount() {
 
     setInterval(() =>{
@@ -29,7 +33,7 @@ export class App extends React.Component {
 
         },1000);
     }
-
+    
   render(){
     let appHeader = "";
     let appContent = "";
@@ -40,6 +44,7 @@ export class App extends React.Component {
                 tracking={this.props.tracking} 
                 config={GLOBAL_CONFIG} 
                 time={this.props.timer}
+                answered={this.state.answered}
                 I18n={I18n}/>
       );
       if(this.props.wait_for_user_profile !== true){
@@ -48,6 +53,7 @@ export class App extends React.Component {
                 user_profile={this.props.user_profile} 
                 tracking={this.props.tracking} 
                 quiz={SAMPLES.lock_example} 
+                answered={this.state.answered}
                 config={GLOBAL_CONFIG} 
                 I18n={I18n}/>
         );

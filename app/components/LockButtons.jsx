@@ -1,4 +1,7 @@
 import React from 'react';
+import Spinner from 'react-bootstrap/Spinner'
+import './../assets/scss/quiz.scss';
+
 
 
 export default class LockButtons extends React.Component {
@@ -8,20 +11,32 @@ export default class LockButtons extends React.Component {
   render(){
    
     return (
-      <div className="center">
+       <div className="table">
         
-        <button className="answerQuestion" onClick={this.props.onAnswerQuestion}>
-        {this.props.I18n.getTrans("i.submit")}
-        </button>
-       
-        
-        <button className="nextQuestion" onClick={this.props.onNextQuestion}>
-        {this.props.I18n.getTrans("i.next")}
-        </button>
+        <table> 
+         <tr>
+              <td align="center">
+              <button class="button_lock"
+                onClick={ () => {
+                if (this.props.question.choices[this.state.current_choice_index].id===this.props.respuestai){
+                  return this.setState({answered:true});
 
-       
+                  }else{
+                    return this.setState({answered:false});
+                  }
+                
+                }}>
+                <Spinner animation="border" role="success"/>
+                <img src="./../assets/images/lock.png" width="80px" height="100px" />
+                <p/>Try!!
+                </button>
 
-     
+                 
+              </td>
+             
+            </tr>
+
+        </table> 
       </div>
     );
   }
