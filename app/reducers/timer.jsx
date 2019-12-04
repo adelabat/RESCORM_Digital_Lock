@@ -1,18 +1,17 @@
-function timer(state = 100, action = {}) {
-	switch (action.type) {
+function timer(state = 100, action = {}){
+  switch (action.type){
 
-		case 'FINISH_APP':
+  case 'FINISH_APP':
 
-			return 0;
+    return 0;
 
-		case 'TIMER':
+  case 'TIMER':
 
-			return action.time;
+    return action.time;
 
-
-		default:
-			return state;
-	}
+  default:
+    return state;
+  }
 }
 
 export default timer;
