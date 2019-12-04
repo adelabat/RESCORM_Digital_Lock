@@ -43,7 +43,7 @@ export function objectiveAccomplishedThunk(objectiveId, accomplishedScore = null
 
 
     // Perform another action after accomplishing the objective
-    
+
     const secondState = getState();
     if((typeof firstState.tracking.objectives[objectiveId] === "object") && (firstState.tracking.objectives[objectiveId].accomplished === false) && (typeof secondState.tracking.objectives[objectiveId] === "object") && (secondState.tracking.objectives[objectiveId].accomplished === true)){
       // Objective with id objectiveId was accomplished.
@@ -68,11 +68,8 @@ export function finishApp(finished = true){
 }
 
 export function timer (time) {
-  return { 
-    type: 'TIMER', 
+  return {
+    type: 'TIMER',
     time: time,
   };
 }
-
-
-
