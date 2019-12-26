@@ -7,7 +7,6 @@ import {INITIAL_STATE} from '../constants/constants';
 import GlobalState from './../reducers/reducers';
 import App from './App';
 
-
 export default class ReduxProvider extends React.Component {
   constructor(props){
     super(props);

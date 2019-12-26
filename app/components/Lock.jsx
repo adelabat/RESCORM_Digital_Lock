@@ -2,14 +2,12 @@ import React from 'react';
 
 
 import * as Utils from '../vendors/Utils.js';
-import {addObjectives,  finishApp, } from './../reducers/actions';
+import {addObjectives, finishApp} from './../reducers/actions';
 
 import QuizHeader from './QuizHeader.jsx';
 import Symbol from './Symbol.jsx';
 
-
-import Spinner from 'react-bootstrap/Spinner'
-
+import Spinner from 'react-bootstrap/Spinner';
 
 export default class Lock extends React.Component {
   constructor(props){
@@ -28,10 +26,19 @@ export default class Lock extends React.Component {
       quiz:quiz,
       current_question_index:1,
       answered:this.props.answered,
+<<<<<<< HEAD
       current_choice_index:respuesta,
 
     };
 
+=======
+      current_choice_index:[0, 1, 2, 4],
+
+    };
+
+    // Inicializar el array para varios tamaños de la palabra
+
+>>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
   }
 
   componentDidMount(){
@@ -44,8 +51,6 @@ export default class Lock extends React.Component {
     this.props.dispatch(addObjectives(objectives));
   }
 
-
-
   onNextQuestion(){
     let isLastQuestion = (this.state.current_question_index === this.state.quiz.questions.length);
     if(isLastQuestion === false){
@@ -57,14 +62,11 @@ export default class Lock extends React.Component {
     }
   }
 
-
   onChangeSymbol(index, content){
     let newCurrentChoices = Object.assign([], this.state.current_choice_index);
     newCurrentChoices.splice(index, 1, content);
     this.setState({current_choice_index:newCurrentChoices});
   }
-
-
 
   render(){
 
@@ -74,11 +76,37 @@ export default class Lock extends React.Component {
 
     let objective = this.props.tracking.objectives["Question" + (this.state.current_question_index)];
 
-
     let respuesta = this.props.config.answer.toLowerCase();
+<<<<<<< HEAD
+=======
+    let choice;
+    let choices1 = [];
+    for(let i = 0; i < respuesta.length; i++){
+      choices1.push(
+        <MCAnswer
+          respuestai = {respuesta.charAt(i)}
+          i={i}
+          current_choice_index = {this.state.current_choice_index}
+          question={currentQuestion}
+          iquestion={this.state.current_question_index}
+          answered={this.state.answered}
+          dispatch={this.props.dispatch}
+          I18n={this.props.I18n}
+          objective={objective}
+          isLastQuestion={isLastQuestion}
+          quizCompleted={this.props.tracking.finished}
+          onNextQuestion={this.onNextQuestion.bind(this)}
+          onChangeSymbol={this.onChangeSymbol.bind(this)}
+        />);
+    }
+    let choice1 = choices1.map((el)=>{
+      return (<td key={el.toString()}>{el}</td>);
+    });
+>>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
 
     let choices = [];
     for(let i = 0; i < respuesta.length; i++){
+<<<<<<< HEAD
       choices.push(
       <Symbol
                      respuestai = {respuesta.charAt(i)}
@@ -101,51 +129,82 @@ export default class Lock extends React.Component {
     });
 
     let contador=0;
+=======
+      choices2.push(
+        <MCAnswer
+          respuestai = {respuesta.charAt(i)}
+          i={i}
+          current_choice_index = {this.state.current_choice_index}
+          question={currentQuestion}
+          iquestion={this.state.current_question_index}
+          answered={this.state.answered}
+          dispatch={this.props.dispatch}
+          I18n={this.props.I18n}
+          objective={objective}
+          isLastQuestion={isLastQuestion}
+          quizCompleted={this.props.tracking.finished}
+          onNextQuestion={this.onNextQuestion.bind(this)}
+          onChangeSymbol={this.onChangeSymbol.bind(this)}
+        />);
+    }
+
+    let choice2 = choices2.map((el)=>{
+      return (<td key={el.toString()}>{el}</td>);
+    });
+
+    if(this.state.current_question_index === 1){
+      choice = choice1;
+    } else if(this.state.current_question_index === 2){
+      choice = choice2;
+    }
+
+    let contador = 0;
+>>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
     let button;
-    if(this.state.answered===true){
-      button =  <button type="button" class="btn btn-outline-success" onClick={this.onNextQuestion.bind(this)}>
-      {this.props.I18n.getTrans("i.next")}</button>
-    } else{
-       button = <td align="center">
-              <button class="button_lock"
-                onClick={ () => {
-                for(let i = 0; i < respuesta.length; i++){
-                  if (currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase()===respuesta.charAt(i)){
-                    contador++;
-                  }else{
-                     return;
-                  }
-                }
-                if(contador===respuesta.length){
-                  return this.setState({answered:true});
-                }
+    if(this.state.answered === true){
+      button = <button type="button" className="btn btn-outline-success" onClick={this.onNextQuestion.bind(this)}>
+        {this.props.I18n.getTrans("i.next")}</button>;
+    } else {
+      button = <td align="center">
+        <button className="button_lock"
+          onClick={ () => {
+            for(let i = 0; i < respuesta.length; i++){
+              if(currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase() === respuesta.charAt(i)){
+                contador++;
+              } else {
+                return;
+              }
+            }
+            if(contador === respuesta.length){
+              return this.setState({answered:true});
+            }
 
-                }}>
-                <Spinner animation="border" role="success"/>
-                <img src="./../assets/images/lock.png" width="80px" height="100px" />
-                <p/>Try!!
-                </button>
+          }}>
+          <Spinner animation="border" role="success"/>
+          <img src="./../assets/images/lock.png" width="80px" height="100px" />
+          <p/>Try!!
+        </button>
 
-              </td>
-      }
+      </td>;
+    }
 
     return (
       <div className="quiz">
         <QuizHeader I18n={this.props.I18n}
-                    quiz={this.state.quiz}
-                    currentQuestionIndex={this.state.current_question_index}/>
+          quiz={this.state.quiz}
+          currentQuestionIndex={this.state.current_question_index}/>
 
-         <table className="table">
-            <tr>
-                  {choice}
-            </tr>
-         </table>
-         <table className="table">
-            <tr>
-                {button}
-            </tr>
+        <table className="table">
+          <tr>
+            {choice}
+          </tr>
+        </table>
+        <table className="table">
+          <tr>
+            {button}
+          </tr>
 
-          </table>
+        </table>
       </div>
     );
   }

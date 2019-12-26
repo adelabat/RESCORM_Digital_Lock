@@ -35,12 +35,10 @@ export function objectiveAccomplished(objectiveId, accomplishedScore = null){
 
 // Example of action created using the redux-thunk middleware for Redux
 
-
 export function objectiveAccomplishedThunk(objectiveId, accomplishedScore = null){
   return (dispatch, getState) => {
     const firstState = JSON.parse(JSON.stringify(getState()));
     dispatch(objectiveAccomplished(objectiveId, accomplishedScore));
-
 
     // Perform another action after accomplishing the objective
 
@@ -67,9 +65,9 @@ export function finishApp(finished = true){
   };
 }
 
-export function timer (time) {
+export function timer(time){
   return {
-    type: 'TIMER',
-    time: time,
+    type:'TIMER',
+    time:time,
   };
 }
