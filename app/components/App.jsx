@@ -1,16 +1,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './../assets/scss/main.scss';
+
 
 import {GLOBAL_CONFIG} from '../config/config.js';
+require('./../assets/scss/main_'+GLOBAL_CONFIG.theme+'.scss');
+
 import * as I18n from '../vendors/I18n.js';
 import * as SAMPLES from '../config/samples.js';
 
 import SCORM from './SCORM.jsx';
 import Header from './Header.jsx';
 import FinishScreen from './FinishScreen.jsx';
+import CajaFuerte from './CajaFuerte.jsx';
+import Candado from './Candado.jsx';
 import Lock from './Lock.jsx';
+import Demo from './Demo.jsx';
+
 import {finishApp, timer } from './../reducers/actions';
+
+
+
 
 export class App extends React.Component {
   constructor(props){
@@ -27,7 +36,7 @@ export class App extends React.Component {
   componentDidMount() {
 
     setInterval(() =>{
-           if (this.props.timer===0){
+           if (this.props.timer===0 && this.props.tracking.finished !== true){
                 this.setState({timeout:true});
                 this.props.dispatch(finishApp(true));
 
@@ -52,17 +61,47 @@ export class App extends React.Component {
                 answered={this.state.answered}
                 I18n={I18n}/>
       );
-      if(this.props.wait_for_user_profile !== true){
-        appContent = (
-          <Lock dispatch={this.props.dispatch}
-                user_profile={this.props.user_profile}
-                tracking={this.props.tracking}
-                quiz={SAMPLES.lock_example}
-                answered={this.state.answered}              
-                config={GLOBAL_CONFIG}
-                I18n={I18n}/>
-        );
-      }
+
+
+          if (GLOBAL_CONFIG.mode==="Symbol") {
+            appContent = (
+              <Lock dispatch={this.props.dispatch}
+                    user_profile={this.props.user_profile}
+                    tracking={this.props.tracking}
+                    quiz={SAMPLES.lock_example}
+                    answered={this.state.answered}
+                    config={GLOBAL_CONFIG}
+                    I18n={I18n}/>
+            );
+          }
+          else if (GLOBAL_CONFIG.mode==="CajaFuerte") {
+            appContent = (
+              <CajaFuerte dispatch={this.props.dispatch}
+                    user_profile={this.props.user_profile}
+                    config={GLOBAL_CONFIG}
+                    I18n={I18n}/>
+            );
+          }
+
+          else if (GLOBAL_CONFIG.mode==="Candado") {
+            appContent = (
+              <Candado dispatch={this.props.dispatch}
+                    user_profile={this.props.user_profile}
+                    config={GLOBAL_CONFIG}
+                    I18n={I18n}/>
+                );
+              }
+
+          else if (GLOBAL_CONFIG.mode==="Pattern") {
+                appContent = (
+                  <Demo
+                  dispatch={this.props.dispatch}
+                        user_profile={this.props.user_profile}
+                        config={GLOBAL_CONFIG}
+                        I18n={I18n}/>
+                    );
+                  }
+
     } else {
       appContent = (
         <FinishScreen dispatch={this.props.dispatch}

@@ -10,9 +10,9 @@ export default class FinishScreen extends React.Component {
   render(){
     let finishTitleText;
     if(this.props.timeout===true){
-    finishTitleText =  "Sorry"
+    finishTitleText =  this.props.config.bad;
     } else {
-      finishTitleText =  "Enhorabuena!!"
+      finishTitleText =  this.props.config.good;
     }
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 export default class Header extends React.Component {
   constructor(props){
     super(props);
@@ -9,7 +10,7 @@ export default class Header extends React.Component {
 
   render(){
     let loggedText;
-  
+
     if(this.props.user_profile){
       if((typeof this.props.user_profile.name === "string")){
         loggedText = (this.props.I18n.getTrans("i.logged_as") + " " + this.props.user_profile.name);
@@ -29,7 +30,7 @@ export default class Header extends React.Component {
         </div>
     }else{
       progress_bar= <div class="progress">
-          <div class="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%">
+          <div class="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100%">
           </div>
         </div>
 

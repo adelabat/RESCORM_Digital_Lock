@@ -7,7 +7,14 @@ export let GLOBAL_CONFIG = {
     // locale: "es",
     adaptive:true,
     finish_screen:true,
-    answer:"abcd",
+    answer:"ab",
+    modes:["Symbol", "Pattern", "CajaFuerte", "Candado"],
+    mode:"Pattern",
+    themes:["dark", "cerulean", "cyborg", "journal", "lux", "minty","pulse","sketchy","superhero"],
+    theme:"lux",
+    good:"Enhorabuena, lo has logrado!!",
+    bad:"Lo siento, se acabó tu tiempo",
+
     scorm:{
       completion_threshold:0.5,
       score_threshold:0.6,
@@ -22,6 +29,13 @@ export let GLOBAL_CONFIG = {
     adaptive:true,
     finish_screen:true,
     answer:"abcd",
+    modes:["Symbol", "AlphaNumeric", "CajaFuerte", "Candado"],
+    mode:"Symbol",
+    themes:["dark", "cerulean", "cyborg", "journal", "lux", "minty","pulse","sketchy","superhero","united"],
+    theme:"lux",
+    good:"Enhorabuena, lo has logrado",
+    bad:"Lo siento, se acabó tu tiempo",
+
     scorm:{
       completion_threshold:0.5,
       score_threshold:0.6,

@@ -1,11 +1,11 @@
 import React from 'react';
-import './../assets/scss/quiz.scss';
+
 
 import * as Utils from '../vendors/Utils.js';
 import {addObjectives,  finishApp, } from './../reducers/actions';
 
 import QuizHeader from './QuizHeader.jsx';
-import MCAnswer from './MCAnswer.jsx';
+import Symbol from './Symbol.jsx';
 
 
 import Spinner from 'react-bootstrap/Spinner'
@@ -18,25 +18,19 @@ export default class Lock extends React.Component {
     let questions = quiz.questions;
     quiz.questions = questions;
 
-    // let respuesta = this.props.I18n.getTrans("i.answer");
-    // let new_current_choice_index = Object.assign([], this.state.current_choice_index);
-    // for(let i = 0; i < respuesta.length; i++){
-    // new_current_choice_index.splice(i, i); }
+
+    let respuesta = this.props.config.answer.toLowerCase().split("");
+    for(let i = 0; i < respuesta.length; i++){
+    respuesta.splice(i, 1, i); }
     // this.setState({current_choice_index: new_current_choice_index});
 
     this.state = {
       quiz:quiz,
       current_question_index:1,
       answered:this.props.answered,
-      current_choice_index:[0,1,2,4,],
-
-
-
+      current_choice_index:respuesta,
 
     };
-
-    // Inicializar el array para varios tamaños de la palabra
-
 
   }
 
@@ -59,7 +53,7 @@ export default class Lock extends React.Component {
       this.setState({answered:false});
     } else {
       this.props.dispatch(finishApp(true));
-      
+
     }
   }
 
@@ -82,11 +76,11 @@ export default class Lock extends React.Component {
 
 
     let respuesta = this.props.config.answer.toLowerCase();
-    let choice;
-    let choices1 = [];
+
+    let choices = [];
     for(let i = 0; i < respuesta.length; i++){
-      choices1.push(
-      <MCAnswer
+      choices.push(
+      <Symbol
                      respuestai = {respuesta.charAt(i)}
                      i={i}
                      current_choice_index = {this.state.current_choice_index}
@@ -102,39 +96,9 @@ export default class Lock extends React.Component {
                      onChangeSymbol={this.onChangeSymbol.bind(this)}
                           />);
     }
-    let choice1=choices1.map((el)=>{
+    let choice=choices.map((el)=>{
     return(<td key={el.toString()}>{el}</td>);
     });
-
-    let choices2 = [];
-    for(let i = 0; i < respuesta.length; i++){
-      choices2.push(
-      <MCAnswer
-                     respuestai = {respuesta.charAt(i)}
-                     i={i}
-                     current_choice_index = {this.state.current_choice_index}
-                     question={currentQuestion}
-                     iquestion={this.state.current_question_index}
-                     answered={this.state.answered}
-                     dispatch={this.props.dispatch}
-                     I18n={this.props.I18n}
-                     objective={objective}
-                     isLastQuestion={isLastQuestion}
-                     quizCompleted={this.props.tracking.finished}
-                     onNextQuestion={this.onNextQuestion.bind(this)}
-                     onChangeSymbol={this.onChangeSymbol.bind(this)}
-                          />);
-    }
-
-    let choice2=choices2.map((el)=>{
-    return(<td key={el.toString()}>{el}</td>);
-    });
-
-    if(this.state.current_question_index===1){
-    choice=choice1;
-    }else if(this.state.current_question_index===2){
-    choice=choice2;
-    }
 
     let contador=0;
     let button;
