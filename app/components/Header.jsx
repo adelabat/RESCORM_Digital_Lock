@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default class Header extends React.Component {
   constructor(props){
     super(props);
@@ -22,17 +21,14 @@ export default class Header extends React.Component {
     }
 
     let progress_bar;
-    if(this.props.answered===false){
-      progress_bar= <div class="progress">
-          <div class="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%">
-          </div>
-        </div>
-    }else{
-      progress_bar= <div class="progress">
-          <div class="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100%">
-          </div>
-        </div>
-
+    if(this.props.answered === false){
+      progress_bar = <div className="progress">
+        <div className="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%" />
+      </div>;
+    } else {
+      progress_bar = <div className="progress">
+        <div className="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%" />
+      </div>;
 
     }
 

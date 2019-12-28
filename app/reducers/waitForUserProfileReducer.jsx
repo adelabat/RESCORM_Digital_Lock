@@ -12,5 +12,4 @@ function waitForUserProfileReducer(state = false, action){
   }
 }
 
-
 export default waitForUserProfileReducer;

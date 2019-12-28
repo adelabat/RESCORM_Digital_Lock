@@ -1,9 +1,7 @@
 import React from "react";
-import { render } from "react-dom";
-
 import PatternLock from "react-pattern-lock";
 
-class Demo extends React.Component {
+export default class Pattern extends React.Component {
   constructor(props){
     super(props);
 
@@ -16,7 +14,7 @@ class Demo extends React.Component {
     size: 3
   };
 
-  
+
 }
 
   componentDidMount() {
@@ -100,5 +98,3 @@ class Demo extends React.Component {
     );
   }
 }
-
-render(<Demo />, document.getElementById("root"));

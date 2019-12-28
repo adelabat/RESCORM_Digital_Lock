@@ -16,10 +16,13 @@ export default class Lock extends React.Component {
     let questions = quiz.questions;
     quiz.questions = questions;
 
-
     let respuesta = this.props.config.answer.toLowerCase().split("");
     for(let i = 0; i < respuesta.length; i++){
     respuesta.splice(i, 1, i); }
+    // let respuesta = this.props.I18n.getTrans("i.answer");
+    // let new_current_choice_index = Object.assign([], this.state.current_choice_index);
+    // for(let i = 0; i < respuesta.length; i++){
+    // new_current_choice_index.splice(i, i); }
     // this.setState({current_choice_index: new_current_choice_index});
 
     this.state = {
@@ -30,13 +33,7 @@ export default class Lock extends React.Component {
 
     };
 
-
-
-
-
-
     // Inicializar el array para varios tamaños de la palabra
-
 
   }
 
@@ -70,15 +67,10 @@ export default class Lock extends React.Component {
   render(){
 
     let currentQuestion = this.state.quiz.questions[this.state.current_question_index - 1];
-
     let isLastQuestion = (this.state.current_question_index === this.state.quiz.questions.length);
-
     let objective = this.props.tracking.objectives["Question" + (this.state.current_question_index)];
-
     let respuesta = this.props.config.answer.toLowerCase();
 
-
-    
     let choices = [];
     for(let i = 0; i < respuesta.length; i++){
       choices.push(
@@ -102,9 +94,7 @@ export default class Lock extends React.Component {
     return(<td key={el.toString()}>{el}</td>);
     });
 
-    let contador=0;
-
-
+    let contador = 0;
     let button;
     if(this.state.answered === true){
       button = <button type="button" className="btn btn-outline-success" onClick={this.onNextQuestion.bind(this)}>

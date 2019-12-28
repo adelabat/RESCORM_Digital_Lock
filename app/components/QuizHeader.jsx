@@ -6,18 +6,11 @@ export default class QuizHeader extends React.Component {
   }
   render(){
     return (
-      <div class="table">
+      <div className="table">
         <table>
-
-        <tr><td>
-        <h2>{this.props.I18n.getTrans("i.quiz_header_title2")}
-        </h2></td></tr>
-
-          <tr><td>
-            <p>{this.props.I18n.getTrans("i.quiz_header_title", {current:this.props.currentQuestionIndex, total:this.props.quiz.questions.length})}</p>
+          <tr><td>          
             <h2>{this.props.I18n.getTrans("i.quiz_header_title2")}
             </h2></td></tr>
-
         </table>
       </div>
     );
