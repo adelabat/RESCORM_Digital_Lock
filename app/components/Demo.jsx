@@ -4,7 +4,10 @@ import { render } from "react-dom";
 import PatternLock from "react-pattern-lock";
 
 class Demo extends React.Component {
-  state = {
+  constructor(props){
+    super(props);
+
+  this.state = {
     path: [],
     isLoading: false,
     error: false,
@@ -13,7 +16,8 @@ class Demo extends React.Component {
     size: 3
   };
 
-  errorTimeout = 0;
+  
+}
 
   componentDidMount() {
     window.addEventListener("keydown", ({ which }) => {
@@ -27,7 +31,7 @@ class Demo extends React.Component {
     });
   }
 
-  onReset = () => {
+  onReset(){
     this.setState({
       path: [],
       success: false,
@@ -36,11 +40,11 @@ class Demo extends React.Component {
     });
   };
 
-  onChange = path => {
+  onChange(path){
     this.setState({ path: [...path] });
   };
 
-  onFinish = () => {
+  onFinish(){
     this.setState({ isLoading: true });
     // an imaginary api call
     setTimeout(() => {

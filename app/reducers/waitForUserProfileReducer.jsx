@@ -11,9 +11,6 @@ function waitForUserProfileReducer(state = false, action){
     return state;
   }
 }
-<<<<<<< HEAD
-export default waitForUserProfileReducer;
-=======
+
 
 export default waitForUserProfileReducer;
->>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87

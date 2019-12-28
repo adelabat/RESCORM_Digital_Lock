@@ -9,7 +9,7 @@ export let GLOBAL_CONFIG = {
     finish_screen:true,
     answer:"ab",
     modes:["Symbol", "Pattern", "CajaFuerte", "Candado"],
-    mode:"Pattern",
+    mode:"Symbol",
     themes:["dark", "cerulean", "cyborg", "journal", "lux", "minty","pulse","sketchy","superhero"],
     theme:"lux",
     good:"Enhorabuena, lo has logrado!!",

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-
 import {GLOBAL_CONFIG} from '../config/config.js';
 require('./../assets/scss/main_'+GLOBAL_CONFIG.theme+'.scss');
 
@@ -14,16 +13,8 @@ import FinishScreen from './FinishScreen.jsx';
 import CajaFuerte from './CajaFuerte.jsx';
 import Candado from './Candado.jsx';
 import Lock from './Lock.jsx';
-<<<<<<< HEAD
 import Demo from './Demo.jsx';
-
 import {finishApp, timer } from './../reducers/actions';
-=======
-import {finishApp, timer} from './../reducers/actions';
->>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
-
-
-
 
 export class App extends React.Component {
   constructor(props){
@@ -39,15 +30,10 @@ export class App extends React.Component {
   componentDidMount(){
 
     setInterval(() =>{
-<<<<<<< HEAD
+
            if (this.props.timer===0 && this.props.tracking.finished !== true){
                 this.setState({timeout:true});
                 this.props.dispatch(finishApp(true));
-=======
-      if(this.props.timer === 0 && this.props.tracking.finished !== true){
-        this.setState({timeout:true});
-        this.props.dispatch(finishApp(true));
->>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
 
       } else {
         this.props.dispatch(timer(this.props.timer - 1));
@@ -70,7 +56,7 @@ export class App extends React.Component {
           answered={this.state.answered}
           I18n={I18n}/>
       );
-<<<<<<< HEAD
+
 
 
           if (GLOBAL_CONFIG.mode==="Symbol") {
@@ -84,6 +70,7 @@ export class App extends React.Component {
                     I18n={I18n}/>
             );
           }
+          
           else if (GLOBAL_CONFIG.mode==="CajaFuerte") {
             appContent = (
               <CajaFuerte dispatch={this.props.dispatch}
@@ -111,20 +98,6 @@ export class App extends React.Component {
                         I18n={I18n}/>
                     );
                   }
-
-=======
-      if(this.props.wait_for_user_profile !== true){
-        appContent = (
-          <Lock dispatch={this.props.dispatch}
-            user_profile={this.props.user_profile}
-            tracking={this.props.tracking}
-            quiz={SAMPLES.lock_example}
-            answered={this.state.answered}
-            config={GLOBAL_CONFIG}
-            I18n={I18n}/>
-        );
-      }
->>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
     } else {
       appContent = (
         <FinishScreen dispatch={this.props.dispatch}

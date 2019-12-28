@@ -1,10 +1,6 @@
 import React from 'react';
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
 export default class Header extends React.Component {
   constructor(props){
     super(props);
@@ -26,7 +22,6 @@ export default class Header extends React.Component {
     }
 
     let progress_bar;
-<<<<<<< HEAD
     if(this.props.answered===false){
       progress_bar= <div class="progress">
           <div class="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%">
@@ -37,16 +32,7 @@ export default class Header extends React.Component {
           <div class="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar"  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100%">
           </div>
         </div>
-=======
-    if(this.props.answered === false){
-      progress_bar = <div className="progress">
-        <div className="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%" />
-      </div>;
-    } else {
-      progress_bar = <div className="progress">
-        <div className="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%" />
-      </div>;
->>>>>>> 02a1041eefb1516c0d7d956c60971da5e6fb6c87
+
 
     }
 
