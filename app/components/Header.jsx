@@ -39,8 +39,8 @@ export default class Header extends React.Component {
         <br/>
         {loggedEl}
         {progress_bar}
-        <h4>Time:</h4>
-        <h4>{this.props.time} segundos.</h4>
+        <div className="center"><h4>Time:</h4>
+        <h4>{this.props.time} segundos.</h4></div>
       </div>
     );
   }

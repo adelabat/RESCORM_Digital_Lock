@@ -1,5 +1,6 @@
 import React from "react";
 import PatternLock from "react-pattern-lock";
+import {finishApp} from './../reducers/actions';
 
 export default class Pattern extends React.Component {
   constructor(props){
@@ -13,21 +14,7 @@ export default class Pattern extends React.Component {
     disabled: false,
     size: 3
   };
-
-
 }
-
-  componentDidMount() {
-    window.addEventListener("keydown", ({ which }) => {
-      if (which === 38) {
-        this.setState({
-          size: this.state.size >= 10 ? 10 : this.state.size + 1
-        });
-      } else if (which === 40) {
-        this.setState({ size: this.state.size > 3 ? this.state.size - 1 : 3 });
-      }
-    });
-  }
 
   onReset(){
     this.setState({
@@ -42,11 +29,16 @@ export default class Pattern extends React.Component {
     this.setState({ path: [...path] });
   };
 
+  onNext(){
+    this.props.dispatch(finishApp(true));
+  }
+
   onFinish(){
     this.setState({ isLoading: true });
     // an imaginary api call
+    let answer = this.props.config.answer.toLowerCase();
     setTimeout(() => {
-      if (this.state.path.join("-") === "0-1-2") {
+      if (this.state.path.join("") === answer) {
         this.setState({ isLoading: false, success: true, disabled: true });
       } else {
         this.setState({ disabled: true, error: true });
@@ -64,35 +56,35 @@ export default class Pattern extends React.Component {
 
   render() {
     const { size, path, disabled, success, error, isLoading } = this.state;
+    let tip = this.props.config.tip;
     return (
       <React.Fragment>
         <div className="center">
-          <PatternLock
-            size={size}
-            onChange={this.onChange}
-            path={path}
-            error={error}
-            onFinish={this.onFinish}
-            connectorThickness={5}
-            disabled={disabled || isLoading}
-            success={success}
-          />
-        </div>
         <div className="output">
-          Select the top 3 points starting from the left
+          {tip}
         </div>
-        <div className="output">Output : {this.state.path.join(", ")}</div>
+        <div>Output : {this.state.path.join(", ")}</div>
+        <div className="output"><br/>
         {success && (
-          <button
-            style={{ margin: "0 auto", display: "block" }}
-            onClick={this.onReset}
-          >
-            Click here to reset
-          </button>
+
+          <button type="button"   style={{ margin: "0 auto", display: "block" }} className="btn btn-outline-success" onClick={this.onNext.bind(this)}>
+          Click here to continue</button>
+
+
         )}
-        <div className="output">
-          Press the up/down arrow keys to increase/decrease the size of the
-          input
+        </div>
+
+        <PatternLock  style={{ margin: "0 auto" }}
+          width={ 500 }
+          size={size}
+          onChange={this.onChange.bind(this)}
+          path={path}
+          error={error}
+          onFinish={this.onFinish.bind(this)}
+          connectorThickness={5}
+          disabled={disabled || isLoading}
+          success={success}
+        />
         </div>
       </React.Fragment>
     );

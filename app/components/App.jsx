@@ -84,6 +84,9 @@ export class App extends React.Component {
                         <Pattern dispatch={this.props.dispatch}
                               user_profile={this.props.user_profile}
                               config={GLOBAL_CONFIG}
+                              tracking={this.props.tracking}
+                              quiz={SAMPLES2.lock_example}
+                              answered={this.state.answered}
                               I18n={I18n}/>
                       );
                     }

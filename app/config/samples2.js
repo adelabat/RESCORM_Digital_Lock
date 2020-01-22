@@ -185,56 +185,7 @@ export const lock_example = {
           "value":"",
           "answer":true,
         },
-        {
-          "id":"0",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"1",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"2",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"3",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"4",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"5",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"6",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"7",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"8",
-          "value":"",
-          "answer":true,
-        },
-        {
-          "id":"9",
-          "value":"",
-          "answer":true,
-        },
+      
 
       ],
       "difficulty":2,
