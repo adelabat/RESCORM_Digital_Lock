@@ -12,7 +12,7 @@ import SCORM from './SCORM.jsx';
 import Header from './Header.jsx';
 import FinishScreen from './FinishScreen.jsx';
 import Lock from './Lock.jsx';
-import CajaFuerte from './CajaFuerte.jsx';
+import CombinationLock from './CombinationLock.jsx';
 import Pattern from './Pattern.jsx';
 import {finishApp, timer} from './../reducers/actions';
 
@@ -33,6 +33,9 @@ export class App extends React.Component {
       if(this.props.timer === 0 && this.props.tracking.finished !== true){
         this.setState({timeout:true});
         this.props.dispatch(finishApp(true));
+      } else if (GLOBAL_CONFIG.timeout==="") {
+        this.setState({timeout:false});
+
 
       } else {
         this.props.dispatch(timer(this.props.timer - 1));
@@ -91,9 +94,9 @@ export class App extends React.Component {
                       );
                     }
 
-        else if (GLOBAL_CONFIG.mode==="CajaFuerte") {
+        else if (GLOBAL_CONFIG.mode==="CombinationLock") {
                appContent = (
-                 <CajaFuerte dispatch={this.props.dispatch}
+                 <CombinationLock dispatch={this.props.dispatch}
                        user_profile={this.props.user_profile}
                        config={GLOBAL_CONFIG}
                        I18n={I18n}/>
@@ -113,7 +116,7 @@ export class App extends React.Component {
     }
 
     return (
-      <div id="container">
+      <div className="container">
         <SCORM dispatch={this.props.dispatch}
           tracking={this.props.tracking}
           time={this.props.timer}

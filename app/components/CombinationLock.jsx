@@ -4,9 +4,10 @@ import 'combination-lock-react/dist/index.css'
 import {finishApp} from './../reducers/actions';
 
 
-export default class CajaFuerte extends React.Component {
+export default class Combination extends React.Component {
 
   render(){
+  let imagen=this.props.config.CombinationLockImage;
   let respuesta=this.props.config.answer;
     return(
 
@@ -21,7 +22,7 @@ export default class CajaFuerte extends React.Component {
       />
       </div>
       <div class="CajaFuerte">
-        <img src="./../assets/images/CajaFuerte.png" width="520px" height="550px" />
+        <img src={imagen}  width="520px" height="550px" />
       </div>
     </div>
     );

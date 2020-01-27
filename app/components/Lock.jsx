@@ -91,7 +91,7 @@ export default class Lock extends React.Component {
                           />);
     }
     let choice=choices.map((el)=>{
-    return(<td key={el.toString()}>{el}</td>);
+    return(<td key={el.toString()} style={{ border: "none" }}>{el}</td>);
     });
 
     let contador = 0;
@@ -130,7 +130,7 @@ export default class Lock extends React.Component {
           currentQuestionIndex={this.state.current_question_index}/>
 
         <table className="table">
-          <tr>
+          <tr >
             {choice}
           </tr>
         </table>

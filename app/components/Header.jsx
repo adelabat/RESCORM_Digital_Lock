@@ -15,32 +15,22 @@ export default class Header extends React.Component {
       }
     }
 
-    let loggedEl = null;
-    if(typeof loggedText === "string"){
+    let loggedEl;
+    if(typeof loggedText === "string" && this.props.config.showUsername === "true"){
       loggedEl = <p id="logged_user">{loggedText}</p>;
     }
 
-    let progress_bar;
-    if(this.props.answered === false){
-      progress_bar = <div className="progress">
-        <div className="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%" />
-      </div>;
-    } else {
-      progress_bar = <div className="progress">
-        <div className="progress-bar2  progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%" />
-      </div>;
-
+    let timer;
+    if(this.props.config.timeout!==""){
+      timer=  <div className="center"><h4>Time:</h4>
+        <h4>{this.props.time} segundos.</h4></div>;
     }
-
     return (
       <div className="header_wrapper">
-        <img src="assets/images/react_logo.png"/>
-        <h1>{this.props.I18n.getTrans("i.title")}</h1>
+        <h1>{this.props.config.title}</h1>
         <br/>
         {loggedEl}
-        {progress_bar}
-        <div className="center"><h4>Time:</h4>
-        <h4>{this.props.time} segundos.</h4></div>
+        {timer}
       </div>
     );
   }

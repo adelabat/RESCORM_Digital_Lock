@@ -26,7 +26,7 @@ export default class Symbol extends React.Component {
 
     } else {
       if(this.props.question.choices[currentChoice].value===""){
-        button = <table>
+        button = <table style={{ border: "none" }}>
           <tr>
             <td align="center">
              {this.props.question.choices[currentChoice].id}
@@ -62,8 +62,8 @@ export default class Symbol extends React.Component {
           </tr>
         </table>;
       }else {
-        button = <table>
-          <tr>
+        button = <table style={{ border: "none" }}>
+          <tr >
             <td align="center">
               <img src={this.props.question.choices[currentChoice].value} width="250px" height="200px" />
             </td>
