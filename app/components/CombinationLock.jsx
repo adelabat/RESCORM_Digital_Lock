@@ -16,8 +16,10 @@ export default class Combination extends React.Component {
       <CombinationLock
         combination= {respuesta} //this.props.config.answer
         height={50}
-        onMatch={() => { this.props.dispatch(finishApp(true))
-         }}
+        onMatch={() => {
+          setTimeout(()=>{
+          this.props.dispatch(finishApp(true));
+        }, 1000); }}
         openText={'Unlocked!'}
       />
       </div>

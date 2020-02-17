@@ -64,6 +64,25 @@ export default class Lock extends React.Component {
     this.setState({current_choice_index:newCurrentChoices});
   }
 
+  async onFinish(answer){
+
+    // an imaginary api call
+    // let answer = this.props.config.answer.toLowerCase();
+
+    const res = await fetch("https://escapp.dit.upm.es/api/escapeRooms/1/puzzles/5/check", {
+      method: 'POST',
+      body: JSON.stringify({token: "a.delabat@alumnos.upm.es", solution: answer}),
+      headers: {"Content-type": "application/json"}
+    });
+    const correct = res.ok
+    const msg = await res.json();
+    console.log(msg)
+      if (correct) {
+          this.setState({answered:true});
+      }
+    }
+
+
   render(){
 
     let currentQuestion = this.state.quiz.questions[this.state.current_question_index - 1];
@@ -94,7 +113,9 @@ export default class Lock extends React.Component {
     return(<td key={el.toString()} style={{ border: "none" }}>{el}</td>);
     });
 
-    let contador = 0;
+    let answer = [];
+    for(let i = 0; i < this.props.config.puzzleLength; i++){
+    answer.splice(i, 1, i); }
     let button;
     if(this.state.answered === true){
       button = <button type="button" className="btn btn-outline-success" onClick={this.onNextQuestion.bind(this)}>
@@ -104,15 +125,12 @@ export default class Lock extends React.Component {
         <button className="button_lock"
           onClick={ () => {
             for(let i = 0; i < respuesta.length; i++){
-              if(currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase() === respuesta.charAt(i)){
-                contador++;
-              } else {
-                return;
-              }
+            answer.splice(i, 1, currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase());
             }
-            if(contador === respuesta.length){
-              return this.setState({answered:true});
-            }
+            console.log(answer.join(""));
+            // if(answer.join("") === respuesta){
+            //   return this.setState({answered:true});
+            this.onFinish(answer.join(""));
 
           }}>
           <Spinner animation="border" role="success"/>

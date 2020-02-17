@@ -33,13 +33,23 @@ export default class Pattern extends React.Component {
     this.props.dispatch(finishApp(true));
   }
 
-  onFinish(){
-    this.setState({ isLoading: true });
+  async onFinish(){
+
     // an imaginary api call
-    let answer = this.props.config.answer.toLowerCase();
-    setTimeout(() => {
-      if (this.state.path.join("") === answer) {
-        this.setState({ isLoading: false, success: true, disabled: true });
+    // let answer = this.props.config.answer.toLowerCase();
+
+    const res = await fetch("https://escapp.dit.upm.es/api/escapeRooms/1/puzzles/5/check", {
+      method: 'POST',
+      body: JSON.stringify({token: "a.delabat@alumnos.upm.es", solution: this.state.path.join("")}),
+      headers: {"Content-type": "application/json"}
+    });
+    const correct = res.ok
+    const msg = await res.json();
+    console.log(msg)
+    this.setState({ isLoading: true });
+    setTimeout(()=>{
+      if (correct) {
+        this.setState({isLoading: false, success: true, disabled: true});
       } else {
         this.setState({ disabled: true, error: true });
         this.errorTimeout = window.setTimeout(() => {
@@ -49,10 +59,10 @@ export default class Pattern extends React.Component {
             isLoading: false,
             path: []
           });
-        }, 2000);
+        }, 1000);
       }
-    }, 1000);
-  };
+    }, 100);
+  }
 
   render() {
     const { size, path, disabled, success, error, isLoading } = this.state;
