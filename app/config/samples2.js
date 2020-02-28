@@ -187,7 +187,6 @@ export const lock_example = {
           "answer":true,
         },
 
-
       ],
       "difficulty":2,
     },

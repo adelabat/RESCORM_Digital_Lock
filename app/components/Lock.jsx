@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import * as Utils from '../vendors/Utils.js';
 import {addObjectives, finishApp} from './../reducers/actions';
 
@@ -18,7 +17,7 @@ export default class Lock extends React.Component {
 
     let respuesta = this.props.config.answer.toLowerCase().split("");
     for(let i = 0; i < respuesta.length; i++){
-    respuesta.splice(i, 1, i); }
+      respuesta.splice(i, 1, i); }
     // let respuesta = this.props.I18n.getTrans("i.answer");
     // let new_current_choice_index = Object.assign([], this.state.current_choice_index);
     // for(let i = 0; i < respuesta.length; i++){
@@ -70,18 +69,17 @@ export default class Lock extends React.Component {
     // let answer = this.props.config.answer.toLowerCase();
 
     const res = await fetch("https://escapp.dit.upm.es/api/escapeRooms/1/puzzles/5/check", {
-      method: 'POST',
-      body: JSON.stringify({token: "a.delabat@alumnos.upm.es", solution: answer}),
-      headers: {"Content-type": "application/json"}
+      method:'POST',
+      body:JSON.stringify({token:"a.delabat@alumnos.upm.es", solution:answer}),
+      headers:{"Content-type":"application/json"},
     });
-    const correct = res.ok
+    const correct = res.ok;
     const msg = await res.json();
-    console.log(msg)
-      if (correct) {
-          this.setState({answered:true});
-      }
+    console.log(msg);
+    if(correct){
+      this.setState({answered:true});
     }
-
+  }
 
   render(){
 
@@ -93,29 +91,29 @@ export default class Lock extends React.Component {
     let choices = [];
     for(let i = 0; i < respuesta.length; i++){
       choices.push(
-      <Symbol
-                     respuestai = {respuesta.charAt(i)}
-                     i={i}
-                     current_choice_index = {this.state.current_choice_index}
-                     question={currentQuestion}
-                     iquestion={this.state.current_question_index}
-                     answered={this.state.answered}
-                     dispatch={this.props.dispatch}
-                     I18n={this.props.I18n}
-                     objective={objective}
-                     isLastQuestion={isLastQuestion}
-                     quizCompleted={this.props.tracking.finished}
-                     onNextQuestion={this.onNextQuestion.bind(this)}
-                     onChangeSymbol={this.onChangeSymbol.bind(this)}
-                          />);
+        <Symbol
+          respuestai = {respuesta.charAt(i)}
+          i={i}
+          current_choice_index = {this.state.current_choice_index}
+          question={currentQuestion}
+          iquestion={this.state.current_question_index}
+          answered={this.state.answered}
+          dispatch={this.props.dispatch}
+          I18n={this.props.I18n}
+          objective={objective}
+          isLastQuestion={isLastQuestion}
+          quizCompleted={this.props.tracking.finished}
+          onNextQuestion={this.onNextQuestion.bind(this)}
+          onChangeSymbol={this.onChangeSymbol.bind(this)}
+        />);
     }
-    let choice=choices.map((el)=>{
-    return(<td key={el.toString()} style={{ border: "none" }}>{el}</td>);
+    let choice = choices.map((el)=>{
+      return (<td key={el.toString()} style={{border:"none"}}>{el}</td>);
     });
 
     let answer = [];
     for(let i = 0; i < this.props.config.puzzleLength; i++){
-    answer.splice(i, 1, i); }
+      answer.splice(i, 1, i); }
     let button;
     if(this.state.answered === true){
       button = <button type="button" className="btn btn-outline-success" onClick={this.onNextQuestion.bind(this)}>
@@ -125,7 +123,7 @@ export default class Lock extends React.Component {
         <button className="button_lock"
           onClick={ () => {
             for(let i = 0; i < respuesta.length; i++){
-            answer.splice(i, 1, currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase());
+              answer.splice(i, 1, currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase());
             }
             console.log(answer.join(""));
             // if(answer.join("") === respuesta){

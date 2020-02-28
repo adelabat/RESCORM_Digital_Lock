@@ -24,81 +24,78 @@ export default class Symbol extends React.Component {
     if(this.props.answered === true){
       button = <img src="./../assets/images/lock2.png" width="80px" height="100px" />;
 
+    } else if(this.props.question.choices[currentChoice].value === ""){
+      button = <table style={{border:"none"}}>
+        <tr>
+          <td align="center">
+            {this.props.question.choices[currentChoice].id}
+          </td>
+
+        </tr>
+
+        <tr>
+          <td align="center">
+
+            <Button buttonName=<div className="arrow1" />
+
+              buttonFunc={ () => {
+                if(currentChoice !== 0){
+                  return this.props.onChangeSymbol(this.props.i, currentChoice - 1);
+                }
+                return;
+
+              }}/>
+
+            <Button buttonName=<div className="arrow2" />
+
+              buttonFunc={ () => {
+                if(currentChoice !== this.props.question.choices.length - 1){
+                  return this.props.onChangeSymbol(this.props.i, currentChoice + 1);
+                }
+                return;
+
+              }}/>
+
+          </td>
+
+        </tr>
+      </table>;
     } else {
-      if(this.props.question.choices[currentChoice].value===""){
-        button = <table style={{ border: "none" }}>
-          <tr>
-            <td align="center">
-             {this.props.question.choices[currentChoice].id}
-            </td>
+      button = <table style={{border:"none"}}>
+        <tr >
+          <td align="center">
+            <img src={this.props.question.choices[currentChoice].value} width="250px" height="200px" />
+          </td>
 
-          </tr>
+        </tr>
 
-          <tr>
-            <td align="center">
+        <tr>
+          <td align="center">
 
-              <Button buttonName=<div className="arrow1" />
+            <Button buttonName=<div className="arrow1" />
 
-                buttonFunc={ () => {
-                  if(currentChoice !== 0){
-                    return this.props.onChangeSymbol(this.props.i, currentChoice - 1);
-                  }
-                  return;
+              buttonFunc={ () => {
+                if(currentChoice !== 0){
+                  return this.props.onChangeSymbol(this.props.i, currentChoice - 1);
+                }
+                return;
 
-                }}/>
+              }}/>
 
-              <Button buttonName=<div className="arrow2" />
+            <Button buttonName=<div className="arrow2" />
 
-                buttonFunc={ () => {
-                  if(currentChoice !== this.props.question.choices.length - 1){
-                    return this.props.onChangeSymbol(this.props.i, currentChoice + 1);
-                  }
-                  return;
+              buttonFunc={ () => {
+                if(currentChoice !== this.props.question.choices.length - 1){
+                  return this.props.onChangeSymbol(this.props.i, currentChoice + 1);
+                }
+                return;
 
-                }}/>
+              }}/>
 
-            </td>
+          </td>
 
-          </tr>
-        </table>;
-      }else {
-        button = <table style={{ border: "none" }}>
-          <tr >
-            <td align="center">
-              <img src={this.props.question.choices[currentChoice].value} width="250px" height="200px" />
-            </td>
-
-          </tr>
-
-          <tr>
-            <td align="center">
-
-              <Button buttonName=<div className="arrow1" />
-
-                buttonFunc={ () => {
-                  if(currentChoice !== 0){
-                    return this.props.onChangeSymbol(this.props.i, currentChoice - 1);
-                  }
-                  return;
-
-                }}/>
-
-              <Button buttonName=<div className="arrow2" />
-
-                buttonFunc={ () => {
-                  if(currentChoice !== this.props.question.choices.length - 1){
-                    return this.props.onChangeSymbol(this.props.i, currentChoice + 1);
-                  }
-                  return;
-
-                }}/>
-
-            </td>
-
-          </tr>
-        </table>;
-      }
-
+        </tr>
+      </table>;
     }
 
     return (

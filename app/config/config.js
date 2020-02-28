@@ -19,10 +19,10 @@ export let GLOBAL_CONFIG = {
     theme:"sketchy",
     good:"Enhorabuena, lo has logrado!!",
     bad:"Lo siento, se acabó tu tiempo",
-    escapp: true,
-    puzzleId: 5,
-    escapeRoomId: 1,
-    puzzleLength: 4,
+    escapp:true,
+    puzzleId:5,
+    escapeRoomId:1,
+    puzzleLength:4,
 
     scorm:{
       completion_threshold:0.5,
@@ -49,10 +49,10 @@ export let GLOBAL_CONFIG = {
     theme:"sketchy",
     good:"Enhorabuena, lo has logrado!!",
     bad:"Lo siento, se acabó tu tiempo",
-    escapp: true,
-    puzzleId: 5,
-    escapeRoomId: 1,
-    puzzleLength: 4,
+    escapp:true,
+    puzzleId:5,
+    escapeRoomId:1,
+    puzzleLength:4,
 
     scorm:{
       completion_threshold:0.5,

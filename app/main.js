@@ -5,7 +5,7 @@ import ReduxProvider from './components/ReduxProvider';
 const render = () => {
   ReactDOM.render(
     <ReduxProvider/>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 };
 
