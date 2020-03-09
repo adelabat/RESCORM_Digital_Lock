@@ -8,6 +8,7 @@ import * as I18n from '../vendors/I18n.js';
 import * as SAMPLES from '../config/samples.js';
 import * as SAMPLES2 from '../config/samples2.js';
 
+
 import SCORM from './SCORM.jsx';
 import Header from './Header.jsx';
 import FinishScreen from './FinishScreen.jsx';
@@ -26,24 +27,26 @@ export class App extends React.Component {
       answered:false,
       timeout:false,
     };
+
   }
+
+
+
   componentDidMount(){
 
     setInterval(() =>{
       if(this.props.timer === 0 && this.props.tracking.finished !== true){
         this.setState({timeout:true});
         this.props.dispatch(finishApp(true));
-      } else if (GLOBAL_CONFIG.timeout==="") {
-        this.setState({timeout:false});
-
-
-      } else {
+      } else if (GLOBAL_CONFIG.timeout!=="") {
         this.props.dispatch(timer(this.props.timer - 1));
-
+      } else {
+        this.setState({timeout:false});
       }
-
     }, 1000);
+
   }
+
 
   render(){
     let appHeader = "";

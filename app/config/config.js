@@ -1,5 +1,5 @@
 export let GLOBAL_CONFIG = {
-  dev:{
+  dev:{...{
     debug:true,
     debug_scorm_api:false,
     debug_scorm_api_window:false,
@@ -9,28 +9,29 @@ export let GLOBAL_CONFIG = {
     finish_screen:true,
     title:"DIGITAL LOCK",
     showUsername:"true",
-    timeout:"300",
-    answer:"0001",
+    timeout:"200",
+    answer:"012",
     tip:"Select the top 3 points starting from the left",
     CombinationLockImage:"./../assets/images/CajaFuerte.png",
     modes:["Symbol", "AlphaNumeric", "Pattern", "CombinationLock"],
-    mode:"CombinationLock",
+    mode:"Pattern",
     themes:["dark", "lux", "cerulean", "cyborg", "pulse", "sketchy", "superhero"],
     theme:"sketchy",
     good:"Enhorabuena, lo has logrado!!",
     bad:"Lo siento, se acabó tu tiempo",
-    escapp: true,
+    escapp: 1,
     puzzleId: 5,
     escapeRoomId: 1,
     puzzleLength: 4,
 
+
     scorm:{
-      completion_threshold:0.5,
-      score_threshold:0.6,
+      completion_threshold:window.config && window.config.threshold ?  (window.config.threshold / 100):0.5,
+      score_threshold: window.config && window.config.threshold ?  (window.config.threshold / 100):0.6,
     },
     n:undefined,
-  },
-  production:{
+  },...window.config},
+  production:{...{
     debug:false,
     debug_scorm_api:false,
     debug_scorm_api_window:false,
@@ -40,11 +41,11 @@ export let GLOBAL_CONFIG = {
     title:"DIGITAL LOCK",
     showUsername:"true",
     timeout:"300",
-    answer:"012",
+    answer:"01",
     tip:"Select the top 3 points starting from the left",
     CombinationLockImage:"./../assets/images/CajaFuerte.png",
     modes:["Symbol", "AlphaNumeric", "Pattern", "CombinationLock"],
-    mode:"Symbol",
+    mode:"Pattern",
     themes:["dark", "lux", "cerulean", "cyborg", "pulse", "sketchy", "superhero"],
     theme:"sketchy",
     good:"Enhorabuena, lo has logrado!!",
@@ -54,12 +55,13 @@ export let GLOBAL_CONFIG = {
     escapeRoomId: 1,
     puzzleLength: 4,
 
+
     scorm:{
-      completion_threshold:0.5,
-      score_threshold:0.6,
+      completion_threshold:window.config && window.config.threshold ?  (window.config.threshold / 100): 0.5,
+      score_threshold: window.config && window.config.threshold ?  (window.config.threshold / 100): 0.5,
     },
     n:undefined,
-  },
+  },...window.config},
 };
 
 (function(){

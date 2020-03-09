@@ -37,7 +37,7 @@ export default class Pattern extends React.Component {
 
     // an imaginary api call
     // let answer = this.props.config.answer.toLowerCase();
-
+    if(this.props.config.escapp){
     const res = await fetch("https://escapp.dit.upm.es/api/escapeRooms/1/puzzles/5/check", {
       method: 'POST',
       body: JSON.stringify({token: "a.delabat@alumnos.upm.es", solution: this.state.path.join("")}),
@@ -61,8 +61,29 @@ export default class Pattern extends React.Component {
           });
         }, 1000);
       }
-    }, 100);
+
+
+      }, 100);
+    } else {
+      this.setState({ isLoading: true });
+      setTimeout(()=>{
+        if (this.state.path.join("")===this.props.config.answer) {
+          this.setState({isLoading: false, success: true, disabled: true});
+        } else {
+          this.setState({ disabled: true, error: true });
+          this.errorTimeout = window.setTimeout(() => {
+            this.setState({
+              disabled: false,
+              error: false,
+              isLoading: false,
+              path: []
+            });
+          }, 1000);
+        }
+        }, 100);
+    }
   }
+
 
   render() {
     const { size, path, disabled, success, error, isLoading } = this.state;

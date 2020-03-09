@@ -128,11 +128,13 @@ export default class Lock extends React.Component {
             answer.splice(i, 1, currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase());
             }
             console.log(answer.join(""));
-            // if(answer.join("") === respuesta){
-            //   return this.setState({answered:true});
-            this.onFinish(answer.join(""));
-
-          }}>
+            if(this.props.config.escapp){
+              this.onFinish(answer.join(""));
+            } else {
+              if(answer.join("") === respuesta){
+              return this.setState({answered:true});
+            }
+          }}}>
           <Spinner animation="border" role="success"/>
           <img src="./../assets/images/lock.png" width="80px" height="100px" />
           <p/>Try!!

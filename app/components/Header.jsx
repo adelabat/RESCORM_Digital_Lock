@@ -21,7 +21,7 @@ export default class Header extends React.Component {
     }
 
     let timer;
-    if(this.props.config.timeout!==""){
+    if(this.props.config.timeout !==""){
       timer=  <div className="center"><h4>Time:</h4>
         <h4>{this.props.time} segundos.</h4></div>;
     }
