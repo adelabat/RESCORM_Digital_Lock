@@ -9,7 +9,7 @@ export let GLOBAL_CONFIG = {
     finish_screen:true,
     title:"DIGITAL LOCK",
     showUsername:"true",
-    timeout:"200",
+    timeout:"300",
     answer:"012",
     tip:"Select the top 3 points starting from the left",
     CombinationLockImage:"./../assets/images/CajaFuerte.png",
@@ -23,6 +23,7 @@ export let GLOBAL_CONFIG = {
     puzzleId: 5,
     escapeRoomId: 1,
     puzzleLength: 4,
+
 
 
     scorm:{
@@ -50,10 +51,10 @@ export let GLOBAL_CONFIG = {
     theme:"sketchy",
     good:"Enhorabuena, lo has logrado!!",
     bad:"Lo siento, se acabó tu tiempo",
-    escapp: true,
-    puzzleId: 5,
-    escapeRoomId: 1,
-    puzzleLength: 4,
+    escapp:true,
+    puzzleId:5,
+    escapeRoomId:1,
+    puzzleLength:4,
 
 
     scorm:{

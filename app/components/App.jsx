@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-
 import {GLOBAL_CONFIG} from '../config/config.js';
-require('./../assets/scss/main_'+GLOBAL_CONFIG.theme+'.scss');
+require('./../assets/scss/main_' + GLOBAL_CONFIG.theme + '.scss');
 import * as I18n from '../vendors/I18n.js';
 import * as SAMPLES from '../config/samples.js';
 import * as SAMPLES2 from '../config/samples2.js';
@@ -39,6 +38,7 @@ export class App extends React.Component {
         this.setState({timeout:true});
         this.props.dispatch(finishApp(true));
       } else if (GLOBAL_CONFIG.timeout!=="") {
+        this.setState({timeout:false});
         this.props.dispatch(timer(this.props.timer - 1));
       } else {
         this.setState({timeout:false});
@@ -61,50 +61,50 @@ export class App extends React.Component {
           answered={this.state.answered}
           I18n={I18n}/>
       );
-      if (GLOBAL_CONFIG.mode==="Symbol") {
-             appContent = (
-               <Lock dispatch={this.props.dispatch}
-                     user_profile={this.props.user_profile}
-                     tracking={this.props.tracking}
-                     quiz={SAMPLES.lock_example}
-                     answered={this.state.answered}
-                     config={GLOBAL_CONFIG}
-                     I18n={I18n}/>
-             );
-           }
+      if(GLOBAL_CONFIG.mode === "Symbol"){
+        appContent = (
+          <Lock dispatch={this.props.dispatch}
+            user_profile={this.props.user_profile}
+            tracking={this.props.tracking}
+            quiz={SAMPLES.lock_example}
+            answered={this.state.answered}
+            config={GLOBAL_CONFIG}
+            I18n={I18n}/>
+        );
+      }
 
-       else if (GLOBAL_CONFIG.mode==="AlphaNumeric") {
-            appContent = (
-              <Lock dispatch={this.props.dispatch}
-                    user_profile={this.props.user_profile}
-                    tracking={this.props.tracking}
-                    quiz={SAMPLES2.lock_example}
-                    answered={this.state.answered}
-                    config={GLOBAL_CONFIG}
-                    I18n={I18n}/>
-            );
-          }
+      else if(GLOBAL_CONFIG.mode === "AlphaNumeric"){
+        appContent = (
+          <Lock dispatch={this.props.dispatch}
+            user_profile={this.props.user_profile}
+            tracking={this.props.tracking}
+            quiz={SAMPLES2.lock_example}
+            answered={this.state.answered}
+            config={GLOBAL_CONFIG}
+            I18n={I18n}/>
+        );
+      }
 
-        else if (GLOBAL_CONFIG.mode==="Pattern") {
-                      appContent = (
-                        <Pattern dispatch={this.props.dispatch}
-                              user_profile={this.props.user_profile}
-                              config={GLOBAL_CONFIG}
-                              tracking={this.props.tracking}
-                              quiz={SAMPLES2.lock_example}
-                              answered={this.state.answered}
-                              I18n={I18n}/>
-                      );
-                    }
+      else if(GLOBAL_CONFIG.mode === "Pattern"){
+        appContent = (
+          <Pattern dispatch={this.props.dispatch}
+            user_profile={this.props.user_profile}
+            config={GLOBAL_CONFIG}
+            tracking={this.props.tracking}
+            quiz={SAMPLES2.lock_example}
+            answered={this.state.answered}
+            I18n={I18n}/>
+        );
+      }
 
-        else if (GLOBAL_CONFIG.mode==="CombinationLock") {
-               appContent = (
-                 <CombinationLock dispatch={this.props.dispatch}
-                       user_profile={this.props.user_profile}
-                       config={GLOBAL_CONFIG}
-                       I18n={I18n}/>
-               );
-             }
+      else if(GLOBAL_CONFIG.mode === "CombinationLock"){
+        appContent = (
+          <CombinationLock dispatch={this.props.dispatch}
+            user_profile={this.props.user_profile}
+            config={GLOBAL_CONFIG}
+            I18n={I18n}/>
+        );
+      }
 
     } else {
       appContent = (

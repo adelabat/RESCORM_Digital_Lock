@@ -1,3 +1,3 @@
-export default async function comprueba () {
+export default async function comprueba(){
 
 }

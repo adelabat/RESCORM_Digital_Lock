@@ -133,7 +133,6 @@ export const lock_example = {
       ],
       "difficulty":2,
     },
-    
 
   ],
 };

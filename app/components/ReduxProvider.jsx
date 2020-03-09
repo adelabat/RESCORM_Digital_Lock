@@ -22,7 +22,7 @@ export default class ReduxProvider extends React.Component {
       composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     }
     const enhancers = composeEnhancers(
-      applyMiddleware(thunk)
+      applyMiddleware(thunk),
     );
     const store = createStore(GlobalState, this.initialState, enhancers);
     if(module.hot){
