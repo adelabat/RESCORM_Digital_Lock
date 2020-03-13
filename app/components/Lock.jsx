@@ -126,7 +126,7 @@ export default class Lock extends React.Component {
               answer.splice(i, 1, currentQuestion.choices[this.state.current_choice_index[i]].id.toLowerCase());
             }
             console.log(answer.join(""));
-            if(this.props.config.escapp){
+            if(this.props.config.escapp===true){
               this.onFinish(answer.join(""));
             } else {
               if(answer.join("") === respuesta){

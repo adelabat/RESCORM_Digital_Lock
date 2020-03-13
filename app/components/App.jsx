@@ -37,11 +37,9 @@ export class App extends React.Component {
       if(this.props.timer === 0 && this.props.tracking.finished !== true){
         this.setState({timeout:true});
         this.props.dispatch(finishApp(true));
-      } else if (GLOBAL_CONFIG.timeout!=="") {
+      } else if (GLOBAL_CONFIG.timeout!=="" && this.props.timer > 0) {
         this.setState({timeout:false});
-        this.props.dispatch(timer(this.props.timer - 1));
-      } else {
-        this.setState({timeout:false});
+        this.props.dispatch(timer(this.props.timer - 1));    
       }
     }, 1000);
 

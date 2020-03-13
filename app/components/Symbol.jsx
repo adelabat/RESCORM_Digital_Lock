@@ -36,13 +36,14 @@ export default class Symbol extends React.Component {
         <tr>
           <td align="center">
 
-            <Button buttonName=<div className="arrow1" />
+            <Button buttonName=<div className="arrow1"  />
 
               buttonFunc={ () => {
                 if(currentChoice !== 0){
                   return this.props.onChangeSymbol(this.props.i, currentChoice - 1);
+                }else{
+                  return this.props.onChangeSymbol(this.props.i, this.props.question.choices.length-1);
                 }
-                return;
 
               }}/>
 
@@ -51,8 +52,9 @@ export default class Symbol extends React.Component {
               buttonFunc={ () => {
                 if(currentChoice !== this.props.question.choices.length - 1){
                   return this.props.onChangeSymbol(this.props.i, currentChoice + 1);
+                }else{
+                  return this.props.onChangeSymbol(this.props.i, 0);
                 }
-                return;
 
               }}/>
 
@@ -77,9 +79,9 @@ export default class Symbol extends React.Component {
               buttonFunc={ () => {
                 if(currentChoice !== 0){
                   return this.props.onChangeSymbol(this.props.i, currentChoice - 1);
+                }else{
+                  return this.props.onChangeSymbol(this.props.i, this.props.question.choices.length-1);
                 }
-                return;
-
               }}/>
 
             <Button buttonName=<div className="arrow2" />
@@ -87,9 +89,9 @@ export default class Symbol extends React.Component {
               buttonFunc={ () => {
                 if(currentChoice !== this.props.question.choices.length - 1){
                   return this.props.onChangeSymbol(this.props.i, currentChoice + 1);
+                }else{
+                  return this.props.onChangeSymbol(this.props.i, 0);
                 }
-                return;
-
               }}/>
 
           </td>
