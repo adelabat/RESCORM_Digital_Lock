@@ -1,117 +1,81 @@
 import React from "react";
 import PatternLock from "react-pattern-lock";
-import {finishApp} from './../reducers/actions';
+import {GLOBAL_CONFIG} from '../config/config.js';
+
+import {checkEscapp, timeout} from '../vendors/Utils';
+const {escapp, answer, tip, good, bad} = GLOBAL_CONFIG;
 
 export default class Pattern extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      path:[],
-      isLoading:false,
-      error:false,
-      success:false,
-      disabled:false,
-      size:3,
+      path: [],
+      isLoading: false,
+      error: false,
+      success: false,
+      disabled: false,
     };
-  }
-
-  onReset(){
-    this.setState({
-      path:[],
-      success:false,
-      error:false,
-      disabled:false,
-    });
+    this.onChange = this.onChange.bind(this);
+    this.onFinish = this.onFinish.bind(this);
   }
 
   onChange(path){
-    this.setState({path:[...path]});
-  }
-
-  onNext(){
-    this.props.dispatch(finishApp(true));
+    this.setState({path: [...path]});
   }
 
   async onFinish(){
-
-    // an imaginary api call
-    // let answer = this.props.config.answer.toLowerCase();
-    if(this.props.config.escapp===true){
-    const res = await fetch("https://escapp.dit.upm.es/api/escapeRooms/1/puzzles/5/check", {
-      method:'POST',
-      body:JSON.stringify({token:"a.delabat@alumnos.upm.es", solution:this.state.path.join("")}),
-      headers:{"Content-type":"application/json"},
-    });
-    const correct = res.ok;
-    const msg = await res.json();
-    console.log(msg);
-
-    this.setState({isLoading:true});
-    setTimeout(()=>{
-      if(correct){
-        this.setState({isLoading:false, success:true, disabled:true});
-        setTimeout(()=>{ this.props.dispatch(finishApp(true)); }, 1000);
-      } else {
-        this.setState({disabled:true, error:true});
-        this.errorTimeout = window.setTimeout(() => {
-          this.setState({
-            disabled:false,
-            error:false,
-            isLoading:false,
-            path:[],
-          });
-        }, 1000);
-      }
-
-
-    }, 200);
+    let correct = false;
+    let msg = "";
+    const path = this.state.path.map(n => n + 1);
+    this.setState({isLoading: true});
+    if (escapp){
+      const res = await checkEscapp(path.join(""));
+      correct = res.ok;
+      msg = res.msg;
     } else {
-      this.setState({ isLoading: true });
-      setTimeout(()=>{
-        if (this.state.path.join("")===this.props.config.answer) {
-          this.setState({isLoading: false, success: true, disabled: true});
-          setTimeout(()=>{ this.props.dispatch(finishApp(true)); }, 1000);
-        } else {
-          this.setState({ disabled: true, error: true });
-          this.errorTimeout = window.setTimeout(() => {
-            this.setState({
-              disabled: false,
-              error: false,
-              isLoading: false,
-              path: []
-            });
-          }, 1000);
-        }
-        }, 100);
+      correct = path.join("") === answer;
+      msg = correct ? good : bad;
+    }
+    await timeout(200);
+    if (correct){
+      this.setState({isLoading: false, success: true, disabled: true});
+      this.props.onSubmit(true, correct, msg);
+    } else {
+      this.setState({disabled: true, error: true, wrong: msg || bad || ""});
+      await timeout(2000);
+      this.setState({path: [], isLoading: false, error: false, disabled: false, wrong: null});
     }
   }
 
-
-  render() {
-    const { size, path, disabled, success, error, isLoading } = this.state;
-    let tip = this.props.config.tip;
+  render(){
+    const {path, disabled, success, error, wrong, isLoading} = this.state;
+    let width = "80vw";
+    if (window.innerWidth > 991.98){
+      width = "500px";
+    } else if (window.innerWidth > 767.98){
+      width = "300px";
+    } else if (window.innerWidth > 575.98){
+      width = "300px";
+    }
     return (
-      <React.Fragment>
-        <div className="center">
-          <div className="output">
-            {tip}
-          </div>
-          <div>Output : {this.state.path.join(", ")}</div>
-
-          <PatternLock style={{margin:"0 auto"}}
-            width={ 500 }
-            size={size}
-            onChange={this.onChange.bind(this)}
-            path={path}
-            error={error}
-            onFinish={this.onFinish.bind(this)}
-            connectorThickness={5}
-            disabled={disabled || isLoading}
-            success={success}
-          />
-        </div>
-      </React.Fragment>
+      <div className="pattern center">
+        <h2 className="output">{tip}</h2>
+        <div className="path">{this.state.path.map(n => n + 1).join(", ")}</div>
+        <div className="error">{wrong || ""}</div>
+        <PatternLock style={{margin: "0 auto"}}
+          width={width}
+          size={3}
+          onChange={this.onChange}
+          path={path}
+          error={error}
+          allowJumping
+          onFinish={this.onFinish}
+          connectorThickness={5}
+          disabled={disabled || isLoading}
+          success={success}
+        />
+      </div>
     );
   }
 }

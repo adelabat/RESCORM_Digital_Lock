@@ -9,8 +9,8 @@ const scorm12_path = resolve(__dirname, '../dist_scorm/scorm12');
 const scorm2004_path = resolve(__dirname, '../dist_scorm/scorm2004');
 
 const paths = [path, scorm12_path, scorm2004_path];
-for(let i = 0; i < paths.length; i++){
-  if(!fs.existsSync(paths[i])){
+for (let i = 0; i < paths.length; i++){
+  if (!fs.existsSync(paths[i])){
     fs.mkdirSync(paths[i]);
   }
 }
@@ -43,7 +43,7 @@ let success = true;
 function _onZipFileGenerated(fileSuccess){
   nFilesGenerated++;
   success = (success && fileSuccess);
-  if(nFilesGenerated === 2){
+  if (nFilesGenerated === 2){
     console.log("Task finished");
   }
 }

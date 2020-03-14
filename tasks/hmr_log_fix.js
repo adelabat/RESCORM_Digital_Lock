@@ -10,14 +10,14 @@ const replaceInFile = (filePath, searchRegex, replaceString) => {
   filePath = resolve(filePath);
 
   fs.readFile(filePath, 'utf8', function(err1, data){
-    if(err1){
+    if (err1){
       return console.log(err1);
     }
 
     const result = data.replace(searchRegex, replaceString);
 
     fs.writeFile(filePath, result, 'utf8', function(err2){
-      if(err2){
+      if (err2){
         return console.log(err2);
       }
       return true;

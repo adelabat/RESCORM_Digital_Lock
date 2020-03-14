@@ -1,6 +1,7 @@
 import React from 'react';
 import * as SCORM_WRAPPER from '../vendors/SCORM_API_Wrapper.js';
 import {scormConnected, updateUserProfile} from './../reducers/actions';
+import {GLOBAL_CONFIG} from '../config/config.js';
 
 let COMPLETION_THRESHOLD;
 let COMPLETION_ATTEMPT_THRESHOLD;
@@ -9,15 +10,15 @@ let SCORE_THRESHOLD;
 export default class SCORM extends React.Component {
   constructor(props){
     super(props);
-    if(typeof props.config.scorm === "object"){
-      if((typeof props.config.scorm.completion_threshold === "number") && (props.config.scorm.completion_threshold >= 0.0) && (props.config.scorm.completion_threshold <= 1.0)){
-        COMPLETION_THRESHOLD = props.config.scorm.completion_threshold;
+    if (typeof GLOBAL_CONFIG.scorm === "object"){
+      if ((typeof GLOBAL_CONFIG.scorm.completion_threshold === "number") && (GLOBAL_CONFIG.scorm.completion_threshold >= 0.0) && (GLOBAL_CONFIG.scorm.completion_threshold <= 1.0)){
+        COMPLETION_THRESHOLD = GLOBAL_CONFIG.scorm.completion_threshold;
       }
-      if((typeof props.config.scorm.completion_attempt_threshold === "number") && (props.config.scorm.completion_attempt_threshold >= 0.0) && (props.config.scorm.completion_attempt_threshold <= 1.0)){
-        COMPLETION_ATTEMPT_THRESHOLD = props.config.completion_attempt_threshold;
+      if ((typeof GLOBAL_CONFIG.scorm.completion_attempt_threshold === "number") && (GLOBAL_CONFIG.scorm.completion_attempt_threshold >= 0.0) && (GLOBAL_CONFIG.scorm.completion_attempt_threshold <= 1.0)){
+        COMPLETION_ATTEMPT_THRESHOLD = GLOBAL_CONFIG.completion_attempt_threshold;
       }
-      if((typeof props.config.scorm.score_threshold === "number") && (props.config.scorm.score_threshold >= 0.0) && (props.config.scorm.score_threshold <= 1.0)){
-        SCORE_THRESHOLD = props.config.scorm.score_threshold;
+      if ((typeof GLOBAL_CONFIG.scorm.score_threshold === "number") && (GLOBAL_CONFIG.scorm.score_threshold >= 0.0) && (GLOBAL_CONFIG.scorm.score_threshold <= 1.0)){
+        SCORE_THRESHOLD = GLOBAL_CONFIG.scorm.score_threshold;
       }
     }
   }
@@ -29,24 +30,24 @@ export default class SCORM extends React.Component {
     window.removeEventListener("beforeunload", this.onUnload);
     window.removeEventListener("onload", this.onLoad);
   }
-  UNSAFE_componentDidUpdate(prevProps){
-    if(SCORM_WRAPPER.isConnected()){
+  componentDidUpdate(prevProps){
+    if (SCORM_WRAPPER.isConnected()){
       let updateProgress = (prevProps.tracking.progress_measure !== this.props.tracking.progress_measure);
-      if(updateProgress){
+      if (updateProgress){
         SCORM_WRAPPER.updateProgressMeasure(this.props.tracking.progress_measure, COMPLETION_THRESHOLD, COMPLETION_ATTEMPT_THRESHOLD);
       }
       let updateScore = (prevProps.tracking.score !== this.props.tracking.score);
-      if(updateScore){
+      if (updateScore){
         SCORM_WRAPPER.updateScore(this.props.tracking.score, SCORE_THRESHOLD);
       }
-      if(updateProgress || updateScore){
+      if (updateProgress || updateScore){
         SCORM_WRAPPER.commit();
       }
     }
   }
   onLoad(){
-    let scorm = new SCORM_WRAPPER.init(this.props.config.debug_scorm_api, this.props.config.debug_scorm_api_window);
-    if(!SCORM_WRAPPER.isConnected()){
+    let scorm = new SCORM_WRAPPER.init(GLOBAL_CONFIG.debug_scorm_api, GLOBAL_CONFIG.debug_scorm_api_window);
+    if (!SCORM_WRAPPER.isConnected()){
       this.props.dispatch(scormConnected(false));
       return;
     }
@@ -54,10 +55,10 @@ export default class SCORM extends React.Component {
 
     // Init user profile
     let user = SCORM_WRAPPER.getUserProfile();
-    if((typeof user === "object") && (typeof user.learner_preference === "object")){
-      if(typeof user.learner_preference.difficulty !== "undefined"){
+    if ((typeof user === "object") && (typeof user.learner_preference === "object")){
+      if (typeof user.learner_preference.difficulty !== "undefined"){
         let difficulty = parseInt(user.learner_preference.difficulty, 10);
-        if(!(isNaN(difficulty))){
+        if (!(isNaN(difficulty))){
           user.learner_preference.difficulty = difficulty;
         }
       }
@@ -69,12 +70,12 @@ export default class SCORM extends React.Component {
 
     // Init score
     let hasScore = (Object.keys(this.props.tracking.objectives).reduce(function(acc, key){ return acc + this.props.tracking.objectives[key].score;}.bind(this), 0) > 0);
-    if(hasScore){
+    if (hasScore){
       SCORM_WRAPPER.initScore();
     }
   }
   onUnload(){
-    if(SCORM_WRAPPER.isConnected()){
+    if (SCORM_WRAPPER.isConnected()){
       SCORM_WRAPPER.onExit();
     }
   }

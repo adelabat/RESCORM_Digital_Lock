@@ -1,7 +1,7 @@
 function waitForUserProfileReducer(state = false, action){
   switch (action.type){
   case 'SCORM_CONNECTED':
-    if(action.scorm === false){
+    if (action.scorm === false){
       return false;
     }
     return state;

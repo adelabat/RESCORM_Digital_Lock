@@ -1,0 +1,267 @@
+.center {
+    text-align: center;
+}
+
+.pattern {
+    .error, .path, .output {
+        min-height: 24px;
+        min-width: 1px;
+        text-align: center;
+    }
+    .react-pattern-lock__pattern-wrapper 
+    .react-pattern-lock__point-wrapper 
+    .react-pattern-lock__point 
+    .react-pattern-lock__point-inner {
+        background-color: var(--info) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper
+    .react-pattern-lock__connector-wrapper
+    .react-pattern-lock__connector {
+        background-color: var(--info) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.error 
+    .react-pattern-lock__point-wrapper 
+    .react-pattern-lock__point 
+    .react-pattern-lock__point-inner {
+        background-color: var(--danger) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.error
+    .react-pattern-lock__point-wrapper.selected
+    .react-pattern-lock__point
+    .react-pattern-lock__point-inner {
+        background-color: var(--danger) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper
+    .react-pattern-lock__point-wrapper.selected
+    .react-pattern-lock__point
+    .react-pattern-lock__point-inner {
+        background-color: var(--warning) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.error
+    .react-pattern-lock__point-wrapper
+    .react-pattern-lock__point
+    .react-pattern-lock__point-inner {
+        background-color: var(--danger) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.error
+    .react-pattern-lock__connector-wrapper
+    .react-pattern-lock__connector {
+        background-color: var(--danger) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.success
+    .react-pattern-lock__point-wrapper.selected
+    .react-pattern-lock__point
+    .react-pattern-lock__point-inner {
+        background-color: var(--success) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.success
+    .react-pattern-lock__point-wrapper
+    .react-pattern-lock__point
+    .react-pattern-lock__point-inner {
+        background-color: var(--success) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper.success
+    .react-pattern-lock__connector-wrapper
+    .react-pattern-lock__connector {
+        background-color: var(--success) !important;
+    }
+
+    .react-pattern-lock__pattern-wrapper
+    .react-pattern-lock__connector-wrapper
+    .react-pattern-lock__connector {
+        background-color: var(--warning) !important;
+    }
+}
+
+.symbols {
+    .flex-symbols-container {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: center;
+        .symbol {
+            --size: calc(40vw / var(--number-of-symbols));
+            --icon-size: calc(10vw / var(--number-of-symbols));
+            font-size: var(--size);
+            width: var(--size);
+
+            .choice {
+                text-align: center;
+                color: var(--info);
+                padding: 10px 1vw;
+                line-height: 100%;
+                font-size: inherit;
+                .symbol-img, .unlocked{
+                    width: var(--size);
+                }
+            }
+            .unlocked{  
+                width: var(--size);
+            }
+            .buttons {
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: row;
+                justify-content: center;
+                margin-bottom: 20px;
+                .button-symbol {
+                    color: var(--primary);
+                    background: transparent;
+                    border: none;
+                    line-height: 0%;
+                    vertical-align: middle;
+                    .material-icons {
+                        font-size: var(--icon-size)
+                    } 
+                }
+            }
+        }
+        &.success {
+            .symbol {
+                .choice {
+                    color: var(--success);
+                }
+            }
+        }
+        &.error {
+            .symbol {
+                .choice {
+                    color: var(--danger);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991.98px) {
+    .symbols .flex-symbols-container {
+        .symbol { 
+            --size: calc(60vw / var(--number-of-symbols)); 
+            --icon-size: calc(20vw / var(--number-of-symbols));  
+        }
+        
+    }
+}
+
+@media (max-width: 767.98px)  { 
+    .symbols .flex-symbols-container {
+        .symbol {
+            --size: calc(70vw / var(--number-of-symbols));
+            --icon-size: calc(30vw / var(--number-of-symbols));
+        }
+       
+    }
+}
+
+@media (max-width: 575.98px)  { 
+    .symbols .flex-symbols-container {
+        .symbol { 
+            --size: calc(86vw / var(--number-of-symbols));
+            --icon-size: calc(25vw / var(--number-of-symbols));  
+        } 
+    }
+}
+
+.CombinationLock {
+    .CajaFuerte img {
+        width: 400px;
+        max-width: 90%;
+    }
+}
+
+.PadLock {
+    .padlock-object {
+        display: inline-block;
+        margin-top: 20px;
+        .handle {
+            background: transparent;
+            border: 25px solid var(--gray);
+            height: 200px;
+            margin: 0px 62px;
+            border-bottom: none;
+            border-radius: 20%;
+            margin-bottom: -40px;
+            position: relative;
+            &::after {
+                width: 25px;
+                height: 0px;
+                background-color: white;
+                content: ' ';
+                display: inline-block;
+                position: absolute;
+                left: -25px;
+                bottom: 40px;
+                transition: all ease-in 500ms;
+            }
+            
+        }
+        &.success .handle {
+            &::after {
+                height: 45px;
+            }
+        } 
+        .box {
+            background: var(--info);
+            height: 250px;
+            .combination-lock {
+                padding-bottom: 200px;
+                border-radius: 0px;
+            }
+            &.non-metallic {
+                .combination-lock {
+                    background: var(--info);
+                    border-radius: 0px;
+                    box-shadow: none;
+                    padding-bottom: 200px;
+                    border: none;
+                    .combination-lock-container {
+                        background: var(--white);
+                        border: none;
+                        border-radius: 0px;
+                        box-shadow: none;
+                        .combination-lock-drag {
+                            background: var(--info);
+                            border: 2px solid var(--white);
+                            box-shadow: none;
+                            color: white;
+
+                        }
+                    }
+                    
+                }
+            }
+        }
+            
+    }
+    
+}
+
+
+.button_lock{
+    background: none ; /* Gray */
+    color: #212529;
+    border: none;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    outline:0;
+    &:hover, &:active{
+        transform: translateY(4px);
+    }
+}
+button:focus {
+    outline:0 !important;
+  }
+  
+h1 {
+    color: var(--primary);
+}

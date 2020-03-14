@@ -11,21 +11,21 @@ export default class ReduxProvider extends React.Component {
   constructor(props){
     super(props);
     this.initialState = INITIAL_STATE;
-    if(GLOBAL_CONFIG.adaptive === true){
+    if (GLOBAL_CONFIG.adaptive === true){
       this.initialState.wait_for_user_profile = true;
     }
     this.store = this.configureStore();
   }
   configureStore(){
     let composeEnhancers = compose;
-    if((process.env.NODE_ENV || 'dev') === 'dev'){
+    if ((process.env.NODE_ENV || 'dev') === 'dev'){
       composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     }
     const enhancers = composeEnhancers(
       applyMiddleware(thunk),
     );
     const store = createStore(GlobalState, this.initialState, enhancers);
-    if(module.hot){
+    if (module.hot){
       module.hot.accept('./../reducers/reducers', () => {
         const nextRootReducer = require('./../reducers/reducers').default;
         store.replaceReducer(nextRootReducer);
@@ -36,7 +36,7 @@ export default class ReduxProvider extends React.Component {
   render(){
     return (
       <Provider store={this.store}>
-        <div style={{height:'100%'}}>
+        <div style={{height: '100%'}}>
           <App store={this.store}/>
         </div>
       </Provider>

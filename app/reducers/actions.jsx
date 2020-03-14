@@ -1,35 +1,35 @@
 export function scormConnected(scorm){
   return {
-    type:'SCORM_CONNECTED',
-    scorm:scorm,
+    type: 'SCORM_CONNECTED',
+    scorm: scorm,
   };
 }
 
 export function updateUserProfile(user_profile){
   return {
-    type:'UPDATE_USER_PROFILE',
-    user_profile:user_profile,
+    type: 'UPDATE_USER_PROFILE',
+    user_profile: user_profile,
   };
 }
 
 export function addObjectives(objectives){
   return {
-    type:'ADD_OBJECTIVES',
-    objectives:objectives,
+    type: 'ADD_OBJECTIVES',
+    objectives: objectives,
   };
 }
 
 export function resetObjectives(){
   return {
-    type:'RESET_OBJECTIVES',
+    type: 'RESET_OBJECTIVES',
   };
 }
 
 export function objectiveAccomplished(objectiveId, accomplishedScore = null){
   return {
-    type:'OBJECTIVE_ACCOMPLISHED',
-    objective_id:objectiveId,
-    accomplished_score:accomplishedScore,
+    type: 'OBJECTIVE_ACCOMPLISHED',
+    objective_id: objectiveId,
+    accomplished_score: accomplishedScore,
   };
 }
 
@@ -43,7 +43,7 @@ export function objectiveAccomplishedThunk(objectiveId, accomplishedScore = null
     // Perform another action after accomplishing the objective
 
     const secondState = getState();
-    if((typeof firstState.tracking.objectives[objectiveId] === "object") && (firstState.tracking.objectives[objectiveId].accomplished === false) && (typeof secondState.tracking.objectives[objectiveId] === "object") && (secondState.tracking.objectives[objectiveId].accomplished === true)){
+    if ((typeof firstState.tracking.objectives[objectiveId] === "object") && (firstState.tracking.objectives[objectiveId].accomplished === false) && (typeof secondState.tracking.objectives[objectiveId] === "object") && (secondState.tracking.objectives[objectiveId].accomplished === true)){
       // Objective with id objectiveId was accomplished.
       // Do something and/or dispatch another action.
       console.log("Objective with id " + objectiveId + " was accomplished.");
@@ -58,16 +58,18 @@ export function showDialog(text){
   };
 }
 
-export function finishApp(finished = true){
+export function finishApp(finished = true, success = false, msg = ""){
   return {
-    type:'FINISH_APP',
-    finished:finished,
+    type: 'FINISH_APP',
+    finished,
+    success,
+    msg,
   };
 }
 
 export function timer(time){
   return {
-    type:'TIMER',
-    time:time,
+    type: 'TIMER',
+    time,
   };
 }

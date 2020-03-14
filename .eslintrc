@@ -1,7 +1,8 @@
 {
     "env": {
       "browser": true,
-      "node": true
+      "node": true,
+      "es6": true
     },
     "extends": [
         "eslint:recommended",
@@ -91,10 +92,9 @@
         "vars-on-top": 1,
         "wrap-iife": [1, "inside"],
         "yoda": [1, "never"],
-
+        "no-unused-vars": 0,
         /* Strict Mode */
         "strict": [1, "never"],
-
         /* Variables */
         "no-catch-shadow": 0,
         "no-delete-var": 1,
@@ -125,7 +125,7 @@
         "indent": [1, 2],
         "key-spacing": [1, {
           "beforeColon": false,
-          "afterColon": false
+          "afterColon": true
         }],
         "linebreak-style": 0,
         "max-nested-callbacks": [0, 3],
@@ -153,9 +153,9 @@
           "before": true,
           "after": true,
           "overrides": {
-            "if": { "after": false },
-            "for": { "after": false },
-            "while": { "after": false }
+            "if": { "after": true },
+            "for": { "after": true },
+            "while": { "after": true }
           }
         }],
         "space-before-blocks": [1, {
