@@ -47,7 +47,7 @@ This application allows you to customize a digital lock for digital escape rooms
   * **`Padlock`**: Padlock-like digit combination. You can choose whether it has a metallic effect or a flat color by specifying the `nonMetallic` property.
   * **`Pattern`**: Android-like pattern code. You can only choose numbers from 1 to 9.
 * **`theme`**: Theme. It must be one of the themes available in [bootwatch](https://bootswatch.com/).
-* **`tipv**: Instructions for the user. It can be a small tip on how to use the application or a subtle clue.
+* **`tip`**: Instructions for the user. It can be a small tip on how to use the application or a subtle clue.
 * **`escapp`**: Whether you are using [escapp](http://escapp.dit.upm.es) to manage your escape room. In this case, escapp will verify the puzzle solution and track the user's progress. In case you are using escapp you need to provide the following:
 	* **`escapeRoomId`**: Escape room identifier
 	* **`puzzleId`**: Puzzle identifier
