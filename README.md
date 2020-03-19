@@ -1,4 +1,4 @@
-# RESCORM Digital Lock Authoring tool
+# RESCORM Digital Lock - Authoring Tool
 
 By: [@adelabat](http://github.com/adelabat)
 
