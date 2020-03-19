@@ -56,7 +56,6 @@ This application allows you to customize a digital lock for digital escape rooms
     
 If your are not using escapp, you need to provide the following:
 * **`answer`**: The right code. Depending on the puzzle type it can be a combination of letters and/or numbers.
-
 * **`successMessage`**: Text to display when the user provides the right answer.
 * **`failMessage`**: Text to display when the user provides the wrong answer or runs out of time.
 
