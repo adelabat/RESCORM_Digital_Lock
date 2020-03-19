@@ -51,7 +51,8 @@ This application allows you to customize a digital lock for digital escape rooms
 * **`escapp`**: Whether you are using [escapp](http://escapp.dit.upm.es) to manage your escape room. In this case, escapp will verify the puzzle solution and track the user's progress. In case you are using escapp you need to provide the following:
 	* **`escapeRoomId`**: Escape room identifier
 	* **`puzzleId`**: Puzzle identifier
-    * **`puzzleLength`**: Number of characters in the solution (number of digits/letters/symbols)
+   	* **`puzzleLength`**: Number of characters in the solution (number of digits/letters/symbols)
+	* **`token`**: Escapp user e-mail
     
 If your are not using escapp, you need to provide the following:
 * **`answer`**: The right code. Depending on the puzzle type it can be a combination of letters and/or numbers.
