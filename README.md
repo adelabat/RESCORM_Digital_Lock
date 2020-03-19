@@ -24,8 +24,8 @@ This application allows you to customize a digital lock for digital escape rooms
     
 5. The development server can be stopped by pressing 'Ctrl-C'.
 6. Configuration can be specified in:  
-    * app/config/config.js: Global configuration for the React application.  
-    * app/config/config_lms.js: Configuration for the SCORM environments.      
+    * `app/config/config.js`: Global configuration for the React application.  
+    * `app/config/config_lms.js`: Configuration for the SCORM environments.      
 
 ## Available commands
 
