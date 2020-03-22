@@ -52,7 +52,6 @@ This application allows you to customize a digital lock for digital escape rooms
 	* **`escapeRoomId`**: Escape room identifier
 	* **`puzzleId`**: Puzzle identifier
    	* **`puzzleLength`**: Number of characters in the solution (number of digits/letters/symbols)
-	* **`token`**: Escapp user e-mail
     
 If your are not using escapp, you need to provide the following:
 * **`answer`**: The right code. Depending on the puzzle type it can be a combination of letters and/or numbers.

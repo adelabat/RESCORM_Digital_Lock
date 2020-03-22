@@ -49,6 +49,7 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "yarn": "^1.21.1",
     "zip-folder": "^1.0.0"
   },

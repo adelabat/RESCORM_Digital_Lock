@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   devtool: 'cheap-module-eval-source-map',
@@ -80,6 +81,9 @@ const config = {
     new OpenBrowserPlugin({ url: 'http://localhost:8080/scorm2004.html' }),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  }
 };
 
 module.exports = config;
