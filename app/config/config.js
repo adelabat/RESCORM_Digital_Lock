@@ -5,9 +5,9 @@ export let GLOBAL_CONFIG = {
     debug_scorm_api_window: false,
     available_locales: ["en", "es"],
     title: "DIGITAL LOCK",
-    showUsername: false,
+    showUsername: true,
     timeout: 94,
-    answer: "5678",
+    answer: "8132",
     tip: "Tip to help you",
     CombinationLockImage: "./../assets/images/CajaFuerte.png",
     mode: "Padlock", // ["Symbol", "AlphaNumeric", "Pattern", "CombinationLock", "Padlock"]
@@ -16,10 +16,9 @@ export let GLOBAL_CONFIG = {
     bad: "Lo siento, no has acertado",
     escapp: true,
     nonMetallic: true,
-    puzzleId: 3,
+    puzzleId: 5,
     escapeRoomId: 1,
     puzzleLength: 4,
-    token: "a.delabat@alumnos.upm.es",
     scorm: {
       completion_threshold: window.config && window.config.threshold ? (window.config.threshold / 100) : 0.5,
       score_threshold: window.config && window.config.threshold ? (window.config.threshold / 100) : 0.6,

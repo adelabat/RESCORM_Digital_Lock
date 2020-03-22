@@ -67,18 +67,18 @@ const config = {
   },
 
   plugins: [
-     new webpack.LoaderOptionsPlugin({
+    new webpack.LoaderOptionsPlugin({
       test: /\.(js|jsx)$/,
       options: {
         eslint: {
           configFile: resolve(__dirname, '.eslintrc'),
           cache: false,
-        }
+        },
       },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new CopyWebpackPlugin([{ from: 'vendors', to: 'vendors' }]),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080/scorm2004.html' }),
+    new CopyWebpackPlugin([{ "from": 'vendors', "to": 'vendors' }]),
+    new OpenBrowserPlugin({ "url": 'http://localhost:8080/scorm2004.html' }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   optimization: {

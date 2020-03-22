@@ -1,6 +1,7 @@
 import React from 'react';
 import * as I18n from '../vendors/I18n.js';
 import {GLOBAL_CONFIG} from '../config/config.js';
+import {isEmbeddedInEscapp} from '../vendors/Utils';
 
 export default class Header extends React.Component {
   constructor(props){
@@ -18,7 +19,7 @@ export default class Header extends React.Component {
     }
 
     let loggedEl;
-    if (typeof loggedText === "string" && GLOBAL_CONFIG.showUsername){
+    if (typeof loggedText === "string" && GLOBAL_CONFIG.showUsername && ((!GLOBAL_CONFIG.escapp && isEmbeddedInEscapp()) || (GLOBAL_CONFIG.escapp || !isEmbeddedInEscapp()))){
       loggedEl = <p id="logged_user">{loggedText}</p>;
     }
 
@@ -32,7 +33,7 @@ export default class Header extends React.Component {
     }
     return (
       <div className="header_wrapper">
-        <h1>{GLOBAL_CONFIG.title}</h1>
+        <h1 className="globalTitle">{GLOBAL_CONFIG.title}</h1>
         <br/>
         {loggedEl}
         {timer}

@@ -1,11 +1,11 @@
 import {GLOBAL_CONFIG} from '../config/config';
-const {escapeRoomId, puzzleId, token, good, bad} = GLOBAL_CONFIG;
+const {escapeRoomId, puzzleId, good, bad} = GLOBAL_CONFIG;
 
 const ESCAPP_HOST = "http://localhost:3000" || "https://escapp.dit.upm.es";
 
 let next_objective_id = 1;
 
-const isEmbeddedInEscapp = () => {
+export const isEmbeddedInEscapp = () => {
   try {
     if (window.parent && window.parent.location) {
       const domain = ESCAPP_HOST.split("://")[1];
@@ -27,9 +27,10 @@ export const checkEscapp = async(solution) => {
     const email = window.email || urlParams.get('email');
     const password = window.password || urlParams.get('password');
     const isNotLegacy = email && password;
+    console.log(token, email, password)
     const URL = `${ESCAPP_HOST}/${isEmbeddedInEscapp() ? "" : "api/"}escapeRooms/${escapeRoomId}/puzzles/${puzzleId}/${isNotLegacy ? "submit" : "check"}`;
     const res = await fetch(URL, {
-      "method": 'POST',
+      "method": "POST",
       "body": JSON.stringify(isNotLegacy ? {email, password, solution}:{token, solution}),
       "headers": {
         "Content-type": "application/json",

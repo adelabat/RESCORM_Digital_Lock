@@ -262,6 +262,7 @@ button:focus {
     outline:0 !important;
   }
   
-h1 {
+h1.globalTitle {
     color: var(--primary);
+    margin-top: 0.5em;
 }
