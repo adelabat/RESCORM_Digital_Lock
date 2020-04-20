@@ -7,8 +7,8 @@ This application allows you to customize a digital lock for digital escape rooms
 1. Install [node.js](https://nodejs.org/es/download/) and [git](https://git-scm.com/downloads).
 2. Open a new terminal, go to your working directory and clone this GitHub poject:
     ```bash
-    git clone https://github.com/adelabat/TFG
-    cd TFG
+    git clone https://github.com/adelabat/RESCORM_Digital_Lock
+    cd RESCORM_Digital_Lock
     ```
 3. Execute the following command to install all the project dependencies in the 'node_modules' folder:
     ```bash
